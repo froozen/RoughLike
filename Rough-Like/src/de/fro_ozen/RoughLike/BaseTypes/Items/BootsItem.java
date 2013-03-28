@@ -24,8 +24,4 @@ public class BootsItem extends ArmorItem{
 		p.equip.boots = this;
 		p.invent.content.remove(this);
 	}
-	public void unequip(Player p){
-		p.invent.content.add(this);
-		p.equip.boots = null;
-	}
 }

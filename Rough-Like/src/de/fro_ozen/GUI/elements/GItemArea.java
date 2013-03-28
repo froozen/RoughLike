@@ -12,7 +12,7 @@ public class GItemArea extends BaseElement{
 	private GItemField[][] fields; //The ItemFields displayed
 	private int yrow, xrow; //The count of ItemFields in x- and y-direction
 
-	//Refreshes the AreaModel
+	//Refreshes the AreaModel and calls the checkMe() method of the ItemFields
 	public void checkMe() {
 		refreshAreaModel();
 		for(int i = 0; i<xrow;i++){

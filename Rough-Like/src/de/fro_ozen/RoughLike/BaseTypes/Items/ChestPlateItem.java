@@ -24,8 +24,4 @@ public class ChestPlateItem extends ArmorItem{
 		p.equip.chestPlate = this;
 		p.invent.content.remove(this);
 	}
-	public void unequip(Player p){
-		p.invent.content.add(this);
-		p.equip.chestPlate = null;
-	}
 }

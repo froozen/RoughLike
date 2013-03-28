@@ -24,8 +24,4 @@ public class HelmetItem extends ArmorItem{
 		p.equip.helmet = this;
 		p.invent.content.remove(this);
 	}
-	public void unequip(Player p){
-		p.invent.content.add(this);
-		p.equip.helmet = null;
-	}
 }
