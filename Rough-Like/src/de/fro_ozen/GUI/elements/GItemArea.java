@@ -11,7 +11,6 @@ public class GItemArea extends BaseElement{
 	private ArrayList<BaseItem> items; //The items that go into the ItemFields
 	private GItemField[][] fields; //The ItemFields displayed
 	private int yrow, xrow; //The count of ItemFields in x- and y-direction
-	private GTextArea descriptionArea; //The area, where the descriptions of the items are displayed
 
 	//Refreshes the AreaModel
 	public void checkMe() {
@@ -19,18 +18,6 @@ public class GItemArea extends BaseElement{
 		for(int i = 0; i<xrow;i++){
 			for(int i2 = 0; i2<yrow; i2++){
 				fields[i][i2].checkMe();
-			}
-		}
-		//Select Display-Items
-		if(MouseInput.leftClicked && descriptionArea != null){
-			for(int i = 0; i<xrow;i++){
-				for(int i2 = 0; i2<yrow; i2++){
-					if(fields[i][i2].display!=null){
-						if(fields[i][i2].box.contains(MouseInput.mousePoint)){
-							descriptionArea.setText(fields[i][i2].display.getInformation());
-						}
-					}
-				}
 			}
 		}
 	}
@@ -104,8 +91,12 @@ public class GItemArea extends BaseElement{
 		}
 	}
 
-	//Changes value of descriptionArea
+	//Calls the setDescriptionArea() method of the ItemFields
 	public void setDescriptionArea(GTextArea descripitonArea){
-		this.descriptionArea = descripitonArea;
+		for(int yr=0;yr<yrow;yr++){
+			for(int xr=0;xr<xrow;xr++){
+				fields[xr][yr].setDescriptionArea(descripitonArea);
+			}
+		}
 	}
 }

@@ -13,22 +13,30 @@ public class GItemField extends BaseElement{
 	public BaseItem display; //Item displayed in the Field
 	private final int fieldSize = 28; //Size of the Field
 	private GItemFieldListener listener; //Listener activated when clicked on the Field
-	
+	private GTextArea descriptionArea; //GTextArea, which displays the Item's description
+
 	public void checkMe() {
-		if(box.contains(MouseInput.mousePoint) && MouseInput.rightClicked){
-			if(listener!=null){
-				listener.activate(this);
+		if(box.contains(MouseInput.mousePoint)){
+			if(MouseInput.leftClicked){
+				if(listener!=null){
+					listener.activate(this);
+				}
+			}
+			if(MouseInput.rightClicked){
+				if(descriptionArea != null && display != null){
+					descriptionArea.setText(display.getInformation());
+				}
 			}
 		}
 	}
-	
+
 	//Creates the ItemField
 	public void setBounds(int x, int y, int width, int height) {
 		loadUIset();
 		img = uiset.getSubimage(0, 30, fieldSize, fieldSize);
 		box = new Rectangle(x,y,fieldSize,fieldSize);
 	}
-	
+
 	//Draws the Field and the Icon of display
 	public void drawMe(Graphics g) {
 		g.drawImage(img, box.x, box.y, null);
@@ -43,14 +51,19 @@ public class GItemField extends BaseElement{
 			}
 		}
 	}
-	
+
 	//Changes the value of display
 	public void setDisplayItem(BaseItem item){
 		this.display = item;
 	}
-	
+
 	//Changes the value of listener
 	public void setItemFieldListener(GItemFieldListener listener){
 		this.listener = listener;
+	}
+	
+	//Changes the value of descriptionArea
+	public void setDescriptionArea(GTextArea area){
+		this.descriptionArea = area;
 	}
 }
