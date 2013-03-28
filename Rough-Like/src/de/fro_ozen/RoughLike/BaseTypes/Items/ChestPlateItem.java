@@ -23,5 +23,6 @@ public class ChestPlateItem extends ArmorItem{
 		}
 		p.equip.chestPlate = this;
 		p.invent.content.remove(this);
+		p.equip.refreshOverdef();
 	}
 }

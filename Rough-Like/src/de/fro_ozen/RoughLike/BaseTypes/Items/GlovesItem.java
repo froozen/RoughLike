@@ -23,5 +23,6 @@ public class GlovesItem extends ArmorItem{
 		}
 		p.equip.gloves = this;
 		p.invent.content.remove(this);
+		p.equip.refreshOverdef();
 	}
 }

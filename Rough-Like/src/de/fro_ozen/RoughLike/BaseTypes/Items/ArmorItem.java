@@ -21,5 +21,6 @@ public abstract class ArmorItem extends BaseItem{
 		else if(this instanceof ChestPlateItem)p.equip.chestPlate = null;
 		else if(this instanceof GlovesItem)p.equip.gloves = null;
 		else if(this instanceof BootsItem)p.equip.boots = null;
+		p.equip.refreshOverdef();
 	}
 }

@@ -19,6 +19,7 @@ public class EquipSet {
 	public BootsItem boots;
 	public GlovesItem gloves;
 	public int overdef;
+	
 	public void refreshOverdef(){
 		overdef = 0;
 		if(chestPlate != null)overdef+=chestPlate.defense;

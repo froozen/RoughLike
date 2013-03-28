@@ -23,5 +23,6 @@ public class BootsItem extends ArmorItem{
 		}
 		p.equip.boots = this;
 		p.invent.content.remove(this);
+		p.equip.refreshOverdef();
 	}
 }

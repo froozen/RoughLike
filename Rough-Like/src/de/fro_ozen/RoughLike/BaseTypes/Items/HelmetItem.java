@@ -23,5 +23,6 @@ public class HelmetItem extends ArmorItem{
 		}
 		p.equip.helmet = this;
 		p.invent.content.remove(this);
+		p.equip.refreshOverdef();
 	}
 }
