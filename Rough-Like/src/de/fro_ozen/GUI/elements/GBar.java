@@ -14,10 +14,19 @@ public class GBar extends BaseElement{
 	private boolean text; //Wether the two Numbers of the VariablePair should be displayed
 	private BufferedImage bar; //The Image of the Bar that will be drawn
 	private int color; //The xpos to cut out the bar, which represents the color (UNUSED)
+	private final int colorlength = 25;//Length of one Colorpart in the UISet
+	
+	//Postitons of the Colors
+	public final static int GREEN = 0;
+	public final static int LIGHTBLUE = 1;
+	public final static int RED = 2;
+	public final static int ORANGE = 3;
+	public final static int YELLOW = 4;
+	public final static int BLUE = 5;
 	
 	//Refreshs the Bar
 	public void checkMe() {
-		bar = (BufferedImage) createUIPart(computeBarLength(), box.height-2*borderwidth, 0, 60, 25, 26, 0);
+		bar = (BufferedImage) createUIPart(computeBarLength(), box.height-2*borderwidth, color, 60, 25, 26, 0);
 	}
 	
 	//Changes the value of text
@@ -55,5 +64,9 @@ public class GBar extends BaseElement{
 	public void setBounds(int x, int y, int width, int height) {
 		box = new Rectangle(x, y, width, height);
 		img = createBaseImage(width, height, 206, 0, 65, 30, 3);
+	}
+	
+	public void setColor(int colorid){
+		this.color = color*colorlength;
 	}
 }

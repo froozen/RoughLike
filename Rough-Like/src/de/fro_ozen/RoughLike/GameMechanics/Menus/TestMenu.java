@@ -36,6 +36,7 @@ public class TestMenu extends GMenu{
 		bar.setBounds(50, 200, 150, 30);
 		bar.setDisplayVariablePair(new VariablePair(40, 50));
 		bar.enableText(true);
+		bar.setColor(GBar.RED);
 		
 		ArrayList<BaseItem> items = new ArrayList<BaseItem>();
 		items.add(new GlovesItem());
@@ -55,7 +56,7 @@ public class TestMenu extends GMenu{
 		text.setBounds(10, 10, 100, 50);
 		text.addText("1. line");
 		text.addText("2. line");
-		text.addText("3 Stuck");
+		text.addText("3. line");
 		
 		add(text);
 		add(label);
