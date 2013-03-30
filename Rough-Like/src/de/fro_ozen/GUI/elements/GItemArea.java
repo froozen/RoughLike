@@ -90,13 +90,4 @@ public class GItemArea extends BaseElement{
 			}
 		}
 	}
-
-	//Calls the setDescriptionArea() method of the ItemFields
-	public void setDescriptionArea(GTextArea descripitonArea){
-		for(int yr=0;yr<yrow;yr++){
-			for(int xr=0;xr<xrow;xr++){
-				fields[xr][yr].setDescriptionArea(descripitonArea);
-			}
-		}
-	}
 }

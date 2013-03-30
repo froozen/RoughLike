@@ -77,11 +77,6 @@ public class GEquipmentArea extends BaseElement{
 		for(GItemField field:fields)field.setItemFieldListener(listener);
 	}
 
-	//Calls the setDescriptionArea() method of the ItemFields
-	public void setDescriptionArea(GTextArea descripitonArea){
-		for(GItemField field:fields)field.setDescriptionArea(descripitonArea);
-	}
-
 	//Calls the drawMe() method of the ItemFields
 	public void drawMe(Graphics g){
 		for(GItemField field:fields)field.drawMe(g);

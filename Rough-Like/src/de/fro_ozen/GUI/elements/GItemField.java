@@ -19,12 +19,12 @@ public class GItemField extends BaseElement{
 		if(box.contains(MouseInput.mousePoint)){
 			if(MouseInput.leftClicked){
 				if(listener!=null){
-					listener.activate(this);
+					listener.leftClicked(this);
 				}
 			}
 			if(MouseInput.rightClicked){
-				if(descriptionArea != null && display != null){
-					descriptionArea.setText(display.getInformation());
+				if(listener != null){
+					listener.rightClicked(this);
 				}
 			}
 		}
@@ -60,10 +60,5 @@ public class GItemField extends BaseElement{
 	//Changes the value of listener
 	public void setItemFieldListener(GItemFieldListener listener){
 		this.listener = listener;
-	}
-	
-	//Changes the value of descriptionArea
-	public void setDescriptionArea(GTextArea area){
-		this.descriptionArea = area;
 	}
 }
