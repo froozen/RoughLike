@@ -12,7 +12,8 @@ public class GBar extends BaseElement{
 	private boolean text; //Wether the two Numbers of the VariablePair should be displayed
 	private BufferedImage bar; //The Image of the Bar that will be drawn
 	private int color; //The xpos to cut out the bar, which represents the color (UNUSED)
-	private final int colorlength = 25;//Length of one Colorpart in the UISet
+	private final int colorlength = 25; //Length of one Colorpart in the UISet
+	private String name = ""; //Name displayed next to the values of the VariablePair
 	
 	//Postitons of the Colors
 	public final static int GREEN = 0;
@@ -44,7 +45,7 @@ public class GBar extends BaseElement{
 		}
 		if(text){
 			applyTextStandarts(g);
-			g.drawString(display.real+"/"+display.max, box.x+5, box.y+(box.height/2)+fontheight/2-2);
+			g.drawString(name+": "+display.real+"/"+display.max, box.x+5, box.y+(box.height/2)+fontheight/2-2);
 		}
 	}
 	
@@ -64,7 +65,13 @@ public class GBar extends BaseElement{
 		img = createBaseImage(width, height, 206, 0, 65, 30, 3);
 	}
 	
+	//Changes the value of color
 	public void setColor(int colorid){
 		this.color = colorid*colorlength;
+	}
+	
+	//Changes the Value of name
+	public void setVariableName(String name){
+		this.name = name;
 	}
 }

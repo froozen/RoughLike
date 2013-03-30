@@ -29,12 +29,14 @@ public class InventoryMenu extends GMenu{
 		hpBar.setDisplayVariablePair(GameLoop.player.stats.hp);
 		hpBar.setColor(GBar.RED);
 		hpBar.enableText(true);
+		hpBar.setVariableName("HP");
 		
 		mpBar = new GBar();
 		mpBar.setBounds(425, 35, 165, 20);
 		mpBar.setDisplayVariablePair(GameLoop.player.stats.mp);
 		mpBar.setColor(GBar.LIGHTBLUE);
 		mpBar.enableText(true);
+		mpBar.setVariableName("MP");
 
 		descriptions = new GTextArea();
 		descriptions.setBounds(425, 165, 165, 220);
