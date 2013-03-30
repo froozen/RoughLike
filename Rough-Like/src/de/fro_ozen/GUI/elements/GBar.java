@@ -1,9 +1,7 @@
 package de.fro_ozen.GUI.elements;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
@@ -36,8 +34,8 @@ public class GBar extends BaseElement{
 	
 	//Draws the Bar, its background and the text
 	public void drawMe(Graphics g){
-		g.setColor(Color.green);
-		g.fillRect(box.x, box.y, box.width, box.height);
+//		g.setColor(Color.green);
+//		g.fillRect(box.x, box.y, box.width, box.height);
 		if(img != null){
 			g.drawImage(img, box.x, box.y, null);
 		}
@@ -67,6 +65,6 @@ public class GBar extends BaseElement{
 	}
 	
 	public void setColor(int colorid){
-		this.color = color*colorlength;
+		this.color = colorid*colorlength;
 	}
 }

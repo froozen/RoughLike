@@ -1,5 +1,6 @@
 package de.fro_ozen.RoughLike.GameMechanics.Menus;
 
+import de.fro_ozen.GUI.elements.GBar;
 import de.fro_ozen.GUI.elements.GEquipmentArea;
 import de.fro_ozen.GUI.elements.GItemArea;
 import de.fro_ozen.GUI.elements.GItemField;
@@ -16,14 +17,27 @@ public class InventoryMenu extends GMenu{
 	private GItemArea inventory;
 	private GTextArea descriptions;
 	private GEquipmentArea equipment;
+	private GBar hpBar, mpBar;
 
 	public InventoryMenu(Player player){
 		triggerKey = "inventory";
 
 		setBounds(100,105,600,390);
+		
+		hpBar = new GBar();
+		hpBar.setBounds(425, 10, 165, 20);
+		hpBar.setDisplayVariablePair(GameLoop.player.stats.hp);
+		hpBar.setColor(GBar.RED);
+		hpBar.enableText(true);
+		
+		mpBar = new GBar();
+		mpBar.setBounds(425, 35, 165, 20);
+		mpBar.setDisplayVariablePair(GameLoop.player.stats.mp);
+		mpBar.setColor(GBar.LIGHTBLUE);
+		mpBar.enableText(true);
 
 		descriptions = new GTextArea();
-		descriptions.setBounds(425, 110, 165, 270);
+		descriptions.setBounds(425, 165, 165, 220);
 
 		inventory = new GItemArea();
 		inventory.setDisplayItems(GameLoop.player.invent.content);
@@ -32,10 +46,12 @@ public class InventoryMenu extends GMenu{
 		inventory.setDescriptionArea(descriptions);
 
 		equipment = new GEquipmentArea();
-		equipment.setBounds(468, 10, 0, 0);
+		equipment.setBounds(468, 60, 0, 0);
 		equipment.setDescriptionArea(descriptions);
 		equipment.setItemFieldListener(new EquipmentFieldHandler());
 
+		add(hpBar);
+		add(mpBar);
 		add(equipment);
 		add(descriptions);
 		add(inventory);
