@@ -23,7 +23,7 @@ public class InventoryMenu extends GMenu{
 		setBounds(100,105,600,390);
 
 		descriptions = new GTextArea();
-		descriptions.setBounds(425, 200, 165, 180);
+		descriptions.setBounds(425, 110, 165, 270);
 
 		inventory = new GItemArea();
 		inventory.setDisplayItems(GameLoop.player.invent.content);
@@ -32,7 +32,7 @@ public class InventoryMenu extends GMenu{
 		inventory.setDescriptionArea(descriptions);
 
 		equipment = new GEquipmentArea();
-		equipment.setBounds(425, 10, 0, 0);
+		equipment.setBounds(468, 10, 0, 0);
 		equipment.setDescriptionArea(descriptions);
 		equipment.setItemFieldListener(new EquipmentFieldHandler());
 

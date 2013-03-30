@@ -30,7 +30,7 @@ public class TestMenu extends GMenu{
 		
 		button = new GButton();
 		button.setBounds(50, 100, 100, 40);
-		button.setText("Hallo");
+		button.setText("Hello");
 		
 		bar = new GBar();
 		bar.setBounds(50, 200, 150, 30);
@@ -48,13 +48,13 @@ public class TestMenu extends GMenu{
 		item.setBounds(200, 50, 100, 100);
 		
 		label = new GLabel();
-		label.setBounds(20, 150, 0, 0);
-		label.setText("FUCK YOU");
+		label.setBounds(20, 170, 0, 0);
+		label.setText("Text");
 		
 		text = new GTextArea();
-		text.setBounds(10, 10, 50, 50);
-		text.addText("1 Stuck");
-		text.addText("2 Stuck");
+		text.setBounds(10, 10, 100, 50);
+		text.addText("1. line");
+		text.addText("2. line");
 		text.addText("3 Stuck");
 		
 		add(text);
