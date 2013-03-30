@@ -11,7 +11,7 @@ public abstract class ArmorItem extends BaseItem{
 	}
 	public ArrayList<String> getInformation(){
 		ArrayList<String> list = new ArrayList<String>();
-		list.add("Defnse: +"+defense);
+		list.add("Defense: +"+defense);
 		return list;
 	}
 	public void unequip(Player p){
