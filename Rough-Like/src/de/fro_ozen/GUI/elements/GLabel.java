@@ -3,6 +3,8 @@ package de.fro_ozen.GUI.elements;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+import javax.swing.text.StyledEditorKit.FontSizeAction;
+
 public class GLabel extends BaseElement{
 	private String text; //The text displayed by the Label
 	
@@ -10,7 +12,7 @@ public class GLabel extends BaseElement{
 	public void drawMe(Graphics g){
 		if(text != null){
 			applyTextStandarts(g);
-			g.drawString(text, box.x, box.y);
+			g.drawString(text, box.x, box.y+fontheight);
 		}
 	}
 	

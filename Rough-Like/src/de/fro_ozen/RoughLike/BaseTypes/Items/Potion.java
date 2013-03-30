@@ -31,7 +31,6 @@ public class Potion extends BaseItem{
 	@Override
 	public ArrayList<String> getInformation(){
 		ArrayList<String> list = new ArrayList<String>();
-		list.add(name);
 		list.add("Heals: +"+amount);
 		return list;
 	}

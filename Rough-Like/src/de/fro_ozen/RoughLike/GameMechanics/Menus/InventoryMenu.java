@@ -5,6 +5,7 @@ import de.fro_ozen.GUI.elements.GEquipmentArea;
 import de.fro_ozen.GUI.elements.GItemArea;
 import de.fro_ozen.GUI.elements.GItemField;
 import de.fro_ozen.GUI.elements.GItemFieldListener;
+import de.fro_ozen.GUI.elements.GLabel;
 import de.fro_ozen.GUI.elements.GMenu;
 import de.fro_ozen.GUI.elements.GTextArea;
 import de.fro_ozen.RoughLike.BaseTypes.Entitys.Player;
@@ -18,6 +19,8 @@ public class InventoryMenu extends GMenu{
 	private GTextArea descriptions;
 	private GEquipmentArea equipment;
 	private GBar hpBar, mpBar;
+	private GItemField selectedItem;
+	private GLabel selectedItemName;
 
 	public InventoryMenu(Player player){
 		triggerKey = "inventory";
@@ -39,7 +42,7 @@ public class InventoryMenu extends GMenu{
 		mpBar.setVariableName("MP");
 
 		descriptions = new GTextArea();
-		descriptions.setBounds(425, 165, 165, 220);
+		descriptions.setBounds(425, 195, 165, 190);
 
 		inventory = new GItemArea();
 		inventory.setDisplayItems(GameLoop.player.invent.content);
@@ -49,7 +52,15 @@ public class InventoryMenu extends GMenu{
 		equipment = new GEquipmentArea();
 		equipment.setBounds(468, 60, 0, 0);
 		equipment.setItemFieldListener(new EquipmentFieldHandler());
+		
+		selectedItem = new GItemField();
+		selectedItem.setBounds(425, 165, 0, 0);
+		
+		selectedItemName = new GLabel();
+		selectedItemName.setBounds(455, 165, 0, 0);
 
+		add(selectedItem);
+		add(selectedItemName);
 		add(hpBar);
 		add(mpBar);
 		add(equipment);
@@ -65,6 +76,8 @@ public class InventoryMenu extends GMenu{
 
 		public void rightClicked(GItemField source) {
 			if(source.display != null){
+				selectedItem.setDisplayItem(source.display);
+				selectedItemName.setText(source.display.name);
 				descriptions.setText(source.display.getInformation());
 			}
 		}
@@ -79,6 +92,8 @@ public class InventoryMenu extends GMenu{
 		}
 		public void rightClicked(GItemField source) {
 			if(source.display != null){
+				selectedItem.setDisplayItem(source.display);
+				selectedItemName.setText(source.display.name);
 				descriptions.setText(source.display.getInformation());
 			}
 		}

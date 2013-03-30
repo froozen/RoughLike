@@ -18,7 +18,6 @@ public abstract class BaseWeapon extends BaseItem{
 	}
 	public ArrayList<String> getInformation(){
 		ArrayList<String> list = new ArrayList<String>();
-		list.add(name);
 		list.add("Damage: "+atk+"~"+(atk+atkgap));
 		return list;
 	}
