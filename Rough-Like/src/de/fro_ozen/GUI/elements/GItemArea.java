@@ -5,7 +5,6 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 
 import de.fro_ozen.RoughLike.BaseTypes.Items.BaseItem;
-import de.fro_ozen.RoughLike.GameMechanics.MouseInput;
 
 public class GItemArea extends BaseElement{
 	private ArrayList<BaseItem> items; //The items that go into the ItemFields

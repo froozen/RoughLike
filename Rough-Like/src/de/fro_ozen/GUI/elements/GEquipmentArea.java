@@ -4,8 +4,6 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
-import javax.activation.MailcapCommandMap;
-
 import de.fro_ozen.RoughLike.GameMechanics.GameLoop;
 
 public class GEquipmentArea extends BaseElement{

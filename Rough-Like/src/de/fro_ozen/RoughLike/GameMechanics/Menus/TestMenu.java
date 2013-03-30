@@ -5,17 +5,14 @@ import java.util.ArrayList;
 import de.fro_ozen.GUI.elements.GBar;
 import de.fro_ozen.GUI.elements.GButton;
 import de.fro_ozen.GUI.elements.GItemArea;
-import de.fro_ozen.GUI.elements.GItemField;
 import de.fro_ozen.GUI.elements.GLabel;
 import de.fro_ozen.GUI.elements.GMenu;
 import de.fro_ozen.GUI.elements.GTextArea;
-import de.fro_ozen.RoughLike.BaseTypes.Items.ArmorItem;
 import de.fro_ozen.RoughLike.BaseTypes.Items.BaseItem;
 import de.fro_ozen.RoughLike.BaseTypes.Items.ChestPlateItem;
 import de.fro_ozen.RoughLike.BaseTypes.Items.GlovesItem;
 import de.fro_ozen.RoughLike.BaseTypes.Items.HelmetItem;
 import de.fro_ozen.RoughLike.BaseTypes.Items.Shield;
-import de.fro_ozen.RoughLike.BaseTypes.Items.Sword;
 import de.fro_ozen.RoughLike.BaseTypes.Simple.VariablePair;
 
 public class TestMenu extends GMenu{

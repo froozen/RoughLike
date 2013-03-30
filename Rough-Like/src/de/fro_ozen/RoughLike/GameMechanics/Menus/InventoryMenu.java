@@ -11,6 +11,7 @@ import de.fro_ozen.GUI.elements.GTextArea;
 import de.fro_ozen.RoughLike.BaseTypes.Entitys.Player;
 import de.fro_ozen.RoughLike.BaseTypes.Items.ArmorItem;
 import de.fro_ozen.RoughLike.BaseTypes.Items.BaseWeapon;
+import de.fro_ozen.RoughLike.BaseTypes.Items.ItemStack;
 import de.fro_ozen.RoughLike.BaseTypes.Items.OffHandItem;
 import de.fro_ozen.RoughLike.GameMechanics.GameLoop;
 
@@ -55,6 +56,7 @@ public class InventoryMenu extends GMenu{
 		
 		selectedItem = new GItemField();
 		selectedItem.setBounds(425, 165, 0, 0);
+		selectedItem.showItemStacking(false);
 		
 		selectedItemName = new GLabel();
 		selectedItemName.setBounds(455, 165, 0, 0);
@@ -71,7 +73,22 @@ public class InventoryMenu extends GMenu{
 
 	private class InventoryFieldHandler extends GItemFieldListener{
 		public void leftClicked(GItemField source) {
-			if(source.display != null)source.display.use(GameLoop.player);
+			if(source.display != null){
+				source.display.use(GameLoop.player);
+				
+				if(source.display == selectedItem.display){
+					if(!(source.display instanceof ItemStack)){
+						selectedItem.display = null;
+						selectedItemName.setText(null);
+						descriptions.setText(null);
+					}
+					else if(((ItemStack)source.display).number<1){
+						selectedItem.display = null;
+						selectedItemName.setText(null);
+						descriptions.setText(null);
+					}
+				}
+			}
 		}
 
 		public void rightClicked(GItemField source) {
@@ -88,6 +105,11 @@ public class InventoryMenu extends GMenu{
 				if(source.display instanceof ArmorItem)((ArmorItem)source.display).unequip(GameLoop.player);
 				else if(source.display instanceof BaseWeapon)((BaseWeapon)source.display).unequip(GameLoop.player);
 				else if(source.display instanceof OffHandItem)((OffHandItem)source.display).unequip(GameLoop.player);
+			}
+			if(source.display == selectedItem.display){
+				selectedItem.display = null;
+				selectedItemName.setText(null);
+				descriptions.setText(null);
 			}
 		}
 		public void rightClicked(GItemField source) {
