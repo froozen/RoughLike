@@ -22,6 +22,16 @@ public class KeyInput implements KeyListener{
 		keyNames.put("right", KeyEvent.VK_D);
 		keyNames.put("inventory", KeyEvent.VK_E);
 		keyNames.put("debug", KeyEvent.VK_Q);
+		keyNames.put("0", KeyEvent.VK_0);
+		keyNames.put("1", KeyEvent.VK_1);
+		keyNames.put("2", KeyEvent.VK_2);
+		keyNames.put("3", KeyEvent.VK_3);
+		keyNames.put("4", KeyEvent.VK_4);
+		keyNames.put("5", KeyEvent.VK_5);
+		keyNames.put("6", KeyEvent.VK_6);
+		keyNames.put("7", KeyEvent.VK_7);
+		keyNames.put("8", KeyEvent.VK_8);
+		keyNames.put("9", KeyEvent.VK_9);
 	}
 	public static void resetReleasedKeys(){
 		keyWasReleased = keyReleased;

@@ -2,6 +2,7 @@ package de.fro_ozen.RoughLike.GameMechanics.Menus;
 
 import de.fro_ozen.GUI.elements.GBar;
 import de.fro_ozen.GUI.elements.GEquipmentArea;
+import de.fro_ozen.GUI.elements.GIconBox;
 import de.fro_ozen.GUI.elements.GItemArea;
 import de.fro_ozen.GUI.elements.GItemField;
 import de.fro_ozen.GUI.elements.GItemFieldListener;
@@ -10,6 +11,7 @@ import de.fro_ozen.GUI.elements.GMenu;
 import de.fro_ozen.GUI.elements.GTextArea;
 import de.fro_ozen.RoughLike.BaseTypes.Entitys.Player;
 import de.fro_ozen.RoughLike.BaseTypes.Items.ArmorItem;
+import de.fro_ozen.RoughLike.BaseTypes.Items.BaseItem;
 import de.fro_ozen.RoughLike.BaseTypes.Items.BaseWeapon;
 import de.fro_ozen.RoughLike.BaseTypes.Items.ItemStack;
 import de.fro_ozen.RoughLike.BaseTypes.Items.OffHandItem;
@@ -20,7 +22,8 @@ public class InventoryMenu extends GMenu{
 	private GTextArea descriptions;
 	private GEquipmentArea equipment;
 	private GBar hpBar, mpBar;
-	private GItemField selectedItem;
+	private BaseItem selectedItem;
+	private GIconBox selectedItemIcon;
 	private GLabel selectedItemName;
 
 	public InventoryMenu(Player player){
@@ -54,14 +57,13 @@ public class InventoryMenu extends GMenu{
 		equipment.setBounds(468, 60, 0, 0);
 		equipment.setItemFieldListener(new EquipmentFieldHandler());
 		
-		selectedItem = new GItemField();
-		selectedItem.setBounds(425, 165, 0, 0);
-		selectedItem.showItemStacking(false);
+		selectedItemIcon = new GIconBox();
+		selectedItemIcon.setBounds(425, 165, 0, 0);
 		
 		selectedItemName = new GLabel();
 		selectedItemName.setBounds(455, 165, 0, 0);
 
-		add(selectedItem);
+		add(selectedItemIcon);
 		add(selectedItemName);
 		add(hpBar);
 		add(mpBar);
@@ -76,14 +78,16 @@ public class InventoryMenu extends GMenu{
 			if(source.display != null){
 				source.display.use(GameLoop.player);
 				
-				if(source.display == selectedItem.display){
+				if(source.display == selectedItem){
 					if(!(source.display instanceof ItemStack)){
-						selectedItem.display = null;
+						selectedItem = null;
+						selectedItemIcon.setIcon(null);
 						selectedItemName.setText(null);
 						descriptions.setText(null);
 					}
 					else if(((ItemStack)source.display).number<1){
-						selectedItem.display = null;
+						selectedItem = null;
+						selectedItemIcon.setIcon(null);
 						selectedItemName.setText(null);
 						descriptions.setText(null);
 					}
@@ -93,7 +97,8 @@ public class InventoryMenu extends GMenu{
 
 		public void rightClicked(GItemField source) {
 			if(source.display != null){
-				selectedItem.setDisplayItem(source.display);
+				selectedItem = source.display;
+				selectedItemIcon.setIcon(source.display.icon);
 				selectedItemName.setText(source.display.name);
 				descriptions.setText(source.display.getInformation());
 			}
@@ -106,15 +111,17 @@ public class InventoryMenu extends GMenu{
 				else if(source.display instanceof BaseWeapon)((BaseWeapon)source.display).unequip(GameLoop.player);
 				else if(source.display instanceof OffHandItem)((OffHandItem)source.display).unequip(GameLoop.player);
 			}
-			if(source.display == selectedItem.display){
-				selectedItem.display = null;
+			if(source.display == selectedItem){
+				selectedItem = null;
+				selectedItemIcon.setIcon(null);
 				selectedItemName.setText(null);
 				descriptions.setText(null);
 			}
 		}
 		public void rightClicked(GItemField source) {
 			if(source.display != null){
-				selectedItem.setDisplayItem(source.display);
+				selectedItem = source.display;
+				selectedItemIcon.setIcon(source.display.icon);
 				selectedItemName.setText(source.display.name);
 				descriptions.setText(source.display.getInformation());
 			}
