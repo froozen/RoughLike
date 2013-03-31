@@ -12,6 +12,7 @@ import de.fro_ozen.RoughLike.BaseTypes.Entitys.DropItem;
 import de.fro_ozen.RoughLike.BaseTypes.Entitys.Enemy;
 import de.fro_ozen.RoughLike.BaseTypes.Entitys.Player;
 import de.fro_ozen.RoughLike.BaseTypes.Entitys.ProjectileEntity;
+import de.fro_ozen.RoughLike.GameMechanics.Menus.ItemShortCutBar;
 
 public class GameLoop {
 	private boolean freeze;
@@ -161,6 +162,7 @@ public class GameLoop {
 			testColission();
 			checkAttacks();
 		}
+		ItemShortCutBar.checkKeys();
 		KeyInput.resetReleasedKeys();
 		MouseInput.resetClicks();
 	}

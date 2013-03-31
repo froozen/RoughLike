@@ -16,6 +16,8 @@ import de.fro_ozen.RoughLike.BaseTypes.Items.BaseWeapon;
 import de.fro_ozen.RoughLike.BaseTypes.Items.ItemStack;
 import de.fro_ozen.RoughLike.BaseTypes.Items.OffHandItem;
 import de.fro_ozen.RoughLike.GameMechanics.GameLoop;
+import de.fro_ozen.RoughLike.GameMechanics.HUD;
+import de.fro_ozen.RoughLike.GameMechanics.KeyInput;
 
 public class InventoryMenu extends GMenu{
 	private GItemArea inventory;
@@ -75,7 +77,16 @@ public class InventoryMenu extends GMenu{
 
 	private class InventoryFieldHandler extends GItemFieldListener{
 		public void leftClicked(GItemField source) {
-			if(source.display != null){
+			boolean shortcut = false;
+			for(int i = 0; i<10; i++){
+				if(KeyInput.isPressed(i+"")){
+					ItemShortCutBar.items[i]=source.display;
+					shortcut = true;
+					ItemShortCutBar.lastTimeAssigned = System.currentTimeMillis();
+				}
+			}
+			
+			if(source.display != null && !shortcut){
 				source.display.use(GameLoop.player);
 				
 				if(source.display == selectedItem){

@@ -9,14 +9,19 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import de.fro_ozen.RoughLike.BaseTypes.Entitys.Player;
+import de.fro_ozen.RoughLike.BaseTypes.Items.BaseItem;
+import de.fro_ozen.RoughLike.GameMechanics.Menus.ItemShortCutBar;
 
 public class HUD{
+	public static BaseItem[] shortCuts;
 	private Player display;
 	final int barLength = 200;
 	private int expBarSize;
 	private double HPbarLength, MPbarLength, expBarHeight;
 	private BufferedImage hpbar, mpbar, expbar, overlay, underlay;
+	private ItemShortCutBar itemshorts;
 	public HUD(Player p){
+		itemshorts = new ItemShortCutBar();
 		display = p;
 		try {
 			underlay = ImageIO.read(getClass().getClassLoader().getResourceAsStream("Sprites/HUD/HUD-underlay.png"));
@@ -27,6 +32,7 @@ public class HUD{
 		catch (IOException e) {
 			e.printStackTrace();
 		}
+		shortCuts = new BaseItem[10];
 	}
 
 	private void displayBaseHUD(Graphics g){
@@ -55,8 +61,9 @@ public class HUD{
 		g.setFont(g.getFont().deriveFont(Font.PLAIN, 10));
 		g.drawString(""+display.stats.hp.real, 48, 10);
 		g.drawString(""+display.stats.mp.real, 48, 25);
-		if(display.equip.mainHand != null)g.drawImage(display.equip.mainHand.icon, 8, 7, null);
+		if(display.equip.mainHand != null)g.drawImage(display.equip.mainHand.icon, 6, 4, null);
 		g.drawString(""+display.levels.Level, 5, 41);
+		itemshorts.drawMe(g);
 	}
 
 	public void displayHUD(Graphics g){
