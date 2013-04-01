@@ -8,6 +8,7 @@ import de.fro_ozen.RoughLike.BaseTypes.Entitys.Player;
 
 public class ChestPlateItem extends ArmorItem{
 	public ChestPlateItem(){
+		overlaySpriteLocation = "Sprites/Equipment/armorSprite.png";
 		try {
 			icon = ImageIO.read(getClass().getClassLoader().getResourceAsStream("Sprites/Icons/armor.png"));
 		} catch (IOException e) {
