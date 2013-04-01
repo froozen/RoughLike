@@ -6,6 +6,7 @@ import de.fro_ozen.RoughLike.BaseTypes.Entitys.Player;
 
 public abstract class ArmorItem extends BaseItem{
 	public int defense;
+	public String overlaySpriteLocation;
 	public String getCompareString(){
 		return this.getClass()+name+defense;
 	}

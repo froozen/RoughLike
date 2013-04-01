@@ -74,14 +74,10 @@ public class GameFrame extends JFrame{
 
 		@Override
 		public void mouseExited(MouseEvent arg0) {
-			// TODO Auto-generated method stub
-
 		}
 
 		@Override
 		public void mousePressed(MouseEvent e) {
-			//			p.mouse_clicked = true;
-			//			p.mousePoint = e.getPoint();
 		}
 
 		

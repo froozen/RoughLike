@@ -8,6 +8,7 @@ import de.fro_ozen.RoughLike.BaseTypes.Entitys.Player;
 
 public class HelmetItem extends ArmorItem{
 	public HelmetItem(){
+		overlaySpriteLocation = "Sprites/Equipment/helmetSprite.png";
 		try {
 			icon = ImageIO.read(getClass().getClassLoader().getResourceAsStream("Sprites/Icons/helmet.png"));
 		} catch (IOException e) {

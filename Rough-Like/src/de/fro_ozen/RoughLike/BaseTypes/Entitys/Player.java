@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 
 import de.fro_ozen.RoughLike.BaseTypes.Items.BaseItem;
 import de.fro_ozen.RoughLike.BaseTypes.Items.BaseWeapon;
@@ -27,6 +28,7 @@ public class Player extends BattleEntity{
 	public boolean dead, addBullet;
 	public EquipSet equip;
 	public Inventory invent;
+	private BufferedImage helmetSprite;
 	public void compute() {
 		if(free){
 			if(MouseInput.leftClicked || MouseInput.rightClicked){
@@ -61,6 +63,7 @@ public class Player extends BattleEntity{
 			forceway -=travelway;
 			if(forceway<0)free = true;
 		}
+		helmetSprite = createCharacterSprite(equip.helmet.overlaySpriteLocation);
 		calcAniframe();
 		refreshSprite();
 		updateBoxes();
@@ -100,6 +103,9 @@ public class Player extends BattleEntity{
 	}
 	public void drawMe(Graphics g) {
 		g.drawImage(sprite, (int)x, (int)y, null);
+		
+		if(equip.helmet != null)g.drawImage(helmetSprite, (int)x, (int)y, null);
+		
 		g.setColor(Color.red);
 		for(DamageNumber dmgnum:damnumbers){
 			dmgnum.drawMe(g);

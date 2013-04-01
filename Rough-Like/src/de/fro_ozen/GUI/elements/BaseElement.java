@@ -40,8 +40,7 @@ public abstract class BaseElement {
 	//Imports the UIset.png graphic
 	protected void loadUIset() {
 		try {
-			uiset = ImageIO.read(getClass().getClassLoader()
-					.getResourceAsStream("Sprites/HUD/UIset.png"));
+			uiset = ImageIO.read(getClass().getClassLoader().getResourceAsStream("Sprites/HUD/UIset.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
