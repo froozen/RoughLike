@@ -48,7 +48,7 @@ public class InventoryMenu extends GMenu{
 		mpBar.setVariableName("MP");
 
 		descriptions = new GTextArea();
-		descriptions.setBounds(425, 195, 165, 190);
+		descriptions.setBounds(425, 225, 165, 160);
 
 		inventory = new GItemArea();
 		inventory.setDisplayItems(GameLoop.player.invent.content);
@@ -60,10 +60,10 @@ public class InventoryMenu extends GMenu{
 		equipment.setItemFieldListener(new EquipmentFieldHandler());
 		
 		selectedItemIcon = new GIconBox();
-		selectedItemIcon.setBounds(425, 165, 0, 0);
+		selectedItemIcon.setBounds(425, 195, 0, 0);
 		
 		selectedItemName = new GLabel();
-		selectedItemName.setBounds(455, 165, 0, 0);
+		selectedItemName.setBounds(455, 195, 0, 0);
 
 		add(selectedItemIcon);
 		add(selectedItemName);

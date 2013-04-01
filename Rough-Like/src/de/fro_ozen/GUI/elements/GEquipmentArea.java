@@ -9,7 +9,7 @@ import de.fro_ozen.RoughLike.GameMechanics.GameLoop;
 public class GEquipmentArea extends BaseElement{
 	private ArrayList<GItemField> fields;
 	private final int fieldsize = 31;
-	private GItemField mainHand, offHand, helmet, chestPlate, boots, gloves;
+	private GItemField mainHand, offHand, helmet, chestPlate, boots, gloves, trousers;
 
 	//Calls the checkMe() method of the ItemFields
 	public void checkMe() {
@@ -22,6 +22,7 @@ public class GEquipmentArea extends BaseElement{
 		if(GameLoop.player.equip.chestPlate != chestPlate.display)chestPlate.display = GameLoop.player.equip.chestPlate;
 		if(GameLoop.player.equip.boots != boots.display)boots.display = GameLoop.player.equip.boots;
 		if(GameLoop.player.equip.gloves != gloves.display)gloves.display = GameLoop.player.equip.gloves;
+		if(GameLoop.player.equip.trousers != trousers.display)trousers.display = GameLoop.player.equip.trousers;
 	}
 
 	public void setBounds(int x, int y, int width, int height) {
@@ -49,14 +50,19 @@ public class GEquipmentArea extends BaseElement{
 		chestPlate.setBounds(box.x+fieldsize, box.y+fieldsize, 0, 0);
 		chestPlate.setDisplayItem(GameLoop.player.equip.chestPlate);
 
+		trousers = new GItemField();
+		trousers.setBounds(box.x+fieldsize, box.y+2*fieldsize, 0, 0);
+		trousers.setDisplayItem(GameLoop.player.equip.trousers);
+		
 		boots = new GItemField();
-		boots.setBounds(box.x+fieldsize, box.y+2*fieldsize, 0, 0);
+		boots.setBounds(box.x+fieldsize, box.y+3*fieldsize, 0, 0);
 		boots.setDisplayItem(GameLoop.player.equip.boots);
 
 		gloves = new GItemField();
 		gloves.setBounds(box.x+2*fieldsize, box.y+2*fieldsize, 0, 0);
 		gloves.setDisplayItem(GameLoop.player.equip.gloves);
 
+		fields.add(trousers);
 		fields.add(mainHand);
 		fields.add(offHand);
 		fields.add(helmet);

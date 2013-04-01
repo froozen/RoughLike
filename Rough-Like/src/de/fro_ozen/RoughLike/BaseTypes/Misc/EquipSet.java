@@ -9,6 +9,7 @@ import de.fro_ozen.RoughLike.BaseTypes.Items.ChestPlateItem;
 import de.fro_ozen.RoughLike.BaseTypes.Items.GlovesItem;
 import de.fro_ozen.RoughLike.BaseTypes.Items.HelmetItem;
 import de.fro_ozen.RoughLike.BaseTypes.Items.OffHandItem;
+import de.fro_ozen.RoughLike.BaseTypes.Items.TrousersItem;
 
 
 public class EquipSet {
@@ -18,6 +19,7 @@ public class EquipSet {
 	public HelmetItem helmet;
 	public BootsItem boots;
 	public GlovesItem gloves;
+	public TrousersItem trousers;
 	public int overdef;
 	
 	public void refreshOverdef(){
@@ -26,5 +28,6 @@ public class EquipSet {
 		if(helmet != null)overdef+=helmet.defense;
 		if(boots != null)overdef+=boots.defense;
 		if(gloves != null)overdef+=gloves.defense;
+		if(trousers != null)overdef+=trousers.defense;
 	}
 }

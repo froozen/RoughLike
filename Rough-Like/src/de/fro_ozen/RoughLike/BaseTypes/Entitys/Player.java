@@ -16,6 +16,7 @@ import de.fro_ozen.RoughLike.BaseTypes.Items.HelmetItem;
 import de.fro_ozen.RoughLike.BaseTypes.Items.Inventory;
 import de.fro_ozen.RoughLike.BaseTypes.Items.Shield;
 import de.fro_ozen.RoughLike.BaseTypes.Items.Sword;
+import de.fro_ozen.RoughLike.BaseTypes.Items.TrousersItem;
 import de.fro_ozen.RoughLike.BaseTypes.Misc.BaseStats;
 import de.fro_ozen.RoughLike.BaseTypes.Misc.EquipSet;
 import de.fro_ozen.RoughLike.BaseTypes.Misc.Leveling;
@@ -28,7 +29,7 @@ public class Player extends BattleEntity{
 	public boolean dead, addBullet;
 	public EquipSet equip;
 	public Inventory invent;
-	private BufferedImage helmetSprite, armorSprite;
+	private BufferedImage helmetSprite, armorSprite, bootsSprite, glovesSprite, trousersSprite;
 	public void compute() {
 		if(free){
 			if(MouseInput.leftClicked || MouseInput.rightClicked){
@@ -65,6 +66,9 @@ public class Player extends BattleEntity{
 		}
 		if(equip.helmet != null)helmetSprite = createCharacterSprite(equip.helmet.overlaySpriteLocation);
 		if(equip.chestPlate != null)armorSprite = createCharacterSprite(equip.chestPlate.overlaySpriteLocation);
+		if(equip.gloves != null)glovesSprite = createCharacterSprite(equip.gloves.overlaySpriteLocation);
+		if(equip.boots != null)bootsSprite = createCharacterSprite(equip.boots.overlaySpriteLocation);
+		if(equip.trousers != null)trousersSprite = createCharacterSprite(equip.trousers.overlaySpriteLocation);
 		calcAniframe();
 		refreshSprite();
 		updateBoxes();
@@ -96,6 +100,7 @@ public class Player extends BattleEntity{
 		equip.helmet = new HelmetItem();
 		equip.boots = new BootsItem();
 		equip.gloves = new GlovesItem();
+		equip.trousers = new TrousersItem();
 		invent.addItem(new Gun());
 		equip.refreshOverdef();
 	}
@@ -107,6 +112,9 @@ public class Player extends BattleEntity{
 		
 		if(equip.chestPlate != null)g.drawImage(armorSprite, (int)x, (int)y, null);
 		if(equip.helmet != null)g.drawImage(helmetSprite, (int)x, (int)y, null);
+		if(equip.boots != null)g.drawImage(bootsSprite, (int)x, (int)y, null);
+		if(equip.gloves != null)g.drawImage(glovesSprite, (int)x, (int)y, null);
+		if(equip.trousers != null)g.drawImage(trousersSprite, (int)x, (int)y, null);
 		
 		g.setColor(Color.red);
 		for(DamageNumber dmgnum:damnumbers){
