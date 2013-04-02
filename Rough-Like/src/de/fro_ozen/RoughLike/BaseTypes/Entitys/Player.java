@@ -20,6 +20,7 @@ import de.fro_ozen.RoughLike.BaseTypes.Items.TrousersItem;
 import de.fro_ozen.RoughLike.BaseTypes.Misc.BaseStats;
 import de.fro_ozen.RoughLike.BaseTypes.Misc.EquipSet;
 import de.fro_ozen.RoughLike.BaseTypes.Misc.Leveling;
+import de.fro_ozen.RoughLike.BaseTypes.Spells.HealSpell;
 import de.fro_ozen.RoughLike.GameMechanics.KeyInput;
 import de.fro_ozen.RoughLike.GameMechanics.MouseInput;
 
@@ -34,8 +35,13 @@ public class Player extends BattleEntity{
 		if(free){
 			if(MouseInput.leftClicked || MouseInput.rightClicked){
 				if(MouseInput.leftClicked){
-					if(System.currentTimeMillis()-lastAttack>atkcooldown){
+					if(System.currentTimeMillis()-lastAttack>atkcooldown && equip.mainHand != null){
 						equip.mainHand.attack();
+					}
+				}
+				if(MouseInput.rightClicked){
+					if(equip.offHand != null){
+						equip.offHand.attack();
 					}
 				}
 			}
@@ -95,7 +101,7 @@ public class Player extends BattleEntity{
 		moving = false;
 		invent = new Inventory();
 		equip.mainHand = new Sword();
-		equip.offHand = new Shield();
+		equip.offHand = new HealSpell();
 		equip.chestPlate = new ChestPlateItem();
 		equip.helmet = new HelmetItem();
 		equip.boots = new BootsItem();

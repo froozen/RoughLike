@@ -19,7 +19,6 @@ public class Shield extends OffHandItem{
 	}
 	public ArrayList<String> getInformation(){
 		ArrayList<String> list = new ArrayList<String>();
-		list.add(name);
 		list.add("Useless");
 		return list;
 	}
