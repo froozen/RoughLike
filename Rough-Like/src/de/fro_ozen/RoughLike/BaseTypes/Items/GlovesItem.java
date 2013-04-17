@@ -17,13 +17,13 @@ public class GlovesItem extends ArmorItem{
 		name = "Normal gloves";
 		defense = 1;
 	}
-	public void use(Player p){
+	public boolean use(Player p){
 		if(p.equip.gloves != null){
 			p.invent.content.add(p.equip.gloves);
 			p.equip.gloves = null;
 		}
 		p.equip.gloves = this;
-		p.invent.content.remove(this);
 		p.equip.refreshOverdef();
+		return true;
 	}
 }

@@ -17,13 +17,13 @@ public class ChestPlateItem extends ArmorItem{
 		name = "Normal Armor";
 		defense = 5;
 	}
-	public void use(Player p){
+	public boolean use(Player p){
 		if(p.equip.chestPlate != null){
 			p.invent.content.add(p.equip.chestPlate);
 			p.equip.chestPlate = null;
 		}
 		p.equip.chestPlate = this;
-		p.invent.content.remove(this);
 		p.equip.refreshOverdef();
+		return true;
 	}
 }

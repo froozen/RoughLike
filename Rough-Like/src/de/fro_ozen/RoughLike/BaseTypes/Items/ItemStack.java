@@ -18,12 +18,14 @@ public class ItemStack extends BaseItem{
 		return null;
 	}
 	@Override
-	public void use(Player p) {
-		item.use(p);
-		number--;
-		if(number<1){
-			p.invent.content.remove(this);
+	public boolean use(Player p) {
+		if(item.use(p)){
+			number--;
+			if(number<1){
+				return true;
+			}
 		}
+		return false;
 	}
 	@Override
 	public ArrayList<String> getInformation() {

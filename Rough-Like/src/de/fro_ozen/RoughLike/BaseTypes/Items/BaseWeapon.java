@@ -21,13 +21,13 @@ public abstract class BaseWeapon extends BaseItem{
 		list.add("Damage: "+atk+"~"+(atk+atkgap));
 		return list;
 	}
-	public void use(Player p){
+	public boolean use(Player p){
 		if(GameLoop.player.equip.mainHand != null){
 			GameLoop.player.invent.content.add(GameLoop.player.equip.mainHand);
 			GameLoop.player.equip.mainHand = null;
 		}
 		GameLoop.player.equip.mainHand = this;
-		GameLoop.player.invent.content.remove(this);
+		return true;
 	}
 	public void unequip(Player p){
 		p.invent.content.add(this);

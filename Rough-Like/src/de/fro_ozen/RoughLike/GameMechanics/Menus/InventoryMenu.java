@@ -87,7 +87,7 @@ public class InventoryMenu extends GMenu{
 			}
 			
 			if(source.display != null && !shortcut){
-				source.display.use(GameLoop.player);
+				if(source.display.use(GameLoop.player))GameLoop.player.invent.content.remove(source.display);
 				
 				if(source.display == selectedItem){
 					if(!(source.display instanceof ItemStack)){

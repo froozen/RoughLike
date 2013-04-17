@@ -17,13 +17,13 @@ public class TrousersItem extends ArmorItem{
 		name = "Normal Trousers";
 		defense = 3;
 	}
-	public void use(Player p){
+	public boolean use(Player p){
 		if(p.equip.trousers != null){
 			p.invent.content.add(p.equip.trousers);
 			p.equip.trousers = null;
 		}
 		p.equip.trousers = this;
-		p.invent.content.remove(this);
 		p.equip.refreshOverdef();
+		return true;
 	}
 }

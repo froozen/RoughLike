@@ -10,7 +10,7 @@ public abstract class BaseItem {
 	public BufferedImage icon;
 	public boolean stackAble;
 	
-	public abstract void use(Player p);
+	public abstract boolean use(Player p);
 	public abstract String getCompareString();
 	public abstract ArrayList<String> getInformation();
 }

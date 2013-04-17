@@ -7,13 +7,13 @@ public abstract class OffHandItem extends BaseItem{
 	public String getCompareString(){
 		return this.getClass()+name;
 	}
-	public void use(Player p){
+	public boolean use(Player p){
 		if(p.equip.offHand != null){
 			p.invent.content.add(p.equip.offHand);
 			p.equip.offHand = null;
 		}
 		p.equip.offHand = this;
-		p.invent.content.remove(this);
+		return true;
 	}
 	public void unequip(Player p){
 		p.invent.content.add(this);

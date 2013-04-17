@@ -17,13 +17,13 @@ public class HelmetItem extends ArmorItem{
 		name = "Normal Helmet";
 		defense = 2;
 	}
-	public void use(Player p){
+	public boolean use(Player p){
 		if(p.equip.helmet != null){
 			p.invent.content.add(p.equip.helmet);
 			p.equip.helmet = null;
 		}
 		p.equip.helmet = this;
-		p.invent.content.remove(this);
 		p.equip.refreshOverdef();
+		return true;
 	}
 }
