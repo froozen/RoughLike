@@ -26,9 +26,8 @@ public class Potion extends BaseItem{
 	@Override
 	public boolean use(Player p) {
 		if(p.stats.hp.real != p.stats.hp.max){
-			p.stats.hp.real += amount;
-		if(p.stats.hp.real>p.stats.hp.max)p.stats.hp.real = p.stats.hp.max;
-		return true;
+			p.inflictDamage(-amount, 5);
+			return true;
 		}
 		return false;
 	}

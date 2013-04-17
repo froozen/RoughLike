@@ -26,12 +26,7 @@ public class HealSpell extends BaseSpell{
 
 	public void attack() {
 		if(GameLoop.player.stats.mp.real>MPcost && GameLoop.player.stats.hp.real != GameLoop.player.stats.hp.max){
-			if(GameLoop.player.stats.hp.real+amount<GameLoop.player.stats.hp.max){
-				GameLoop.player.stats.hp.real *= amount;
-			}
-			else{
-				GameLoop.player.stats.hp.real = GameLoop.player.stats.hp.max;
-			}
+			GameLoop.player.inflictDamage(-amount, 5);
 			GameLoop.player.stats.mp.real -= MPcost;
 		}
 	}

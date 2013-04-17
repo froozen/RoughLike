@@ -44,6 +44,7 @@ public abstract class BattleEntity extends CharacterEntity{
 	
 	public void inflictDamage(int dmg, int pushdir) {
 		stats.hp.real-=dmg;
+		if(stats.hp.real >= stats.hp.max)stats.hp.real = stats.hp.max;
 		DamageNumber dmgnum = new DamageNumber((int)x+(sizex/2), (int)y-10, dmg, 1000);
 		damnumbers.add(dmgnum);
 		free = false;
