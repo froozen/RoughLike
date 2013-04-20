@@ -128,5 +128,4 @@ public class Enemy extends BattleEntity{
 		remove = true;
 		prey.levels.addExp(25);
 	}
-
 }

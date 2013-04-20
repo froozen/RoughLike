@@ -2,19 +2,15 @@ package de.fro_ozen.RoughLike.BaseTypes.Entitys;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Point;
 import java.awt.Rectangle;
-import java.awt.image.BufferedImage;
 
 import de.fro_ozen.RoughLike.BaseTypes.Items.BaseItem;
-import de.fro_ozen.RoughLike.BaseTypes.Items.BaseWeapon;
 import de.fro_ozen.RoughLike.BaseTypes.Items.BootsItem;
 import de.fro_ozen.RoughLike.BaseTypes.Items.ChestPlateItem;
 import de.fro_ozen.RoughLike.BaseTypes.Items.GlovesItem;
 import de.fro_ozen.RoughLike.BaseTypes.Items.Gun;
 import de.fro_ozen.RoughLike.BaseTypes.Items.HelmetItem;
 import de.fro_ozen.RoughLike.BaseTypes.Items.Inventory;
-import de.fro_ozen.RoughLike.BaseTypes.Items.Shield;
 import de.fro_ozen.RoughLike.BaseTypes.Items.Sword;
 import de.fro_ozen.RoughLike.BaseTypes.Items.TrousersItem;
 import de.fro_ozen.RoughLike.BaseTypes.Misc.BaseStats;
@@ -81,7 +77,6 @@ public class Player extends BattleEntity{
 		regenHP();
 	}
 	public Player(int x, int y){
-		levels = new Leveling();
 		equip = new EquipSet();
 		atkcooldown = 300;
 		attackbox = new Rectangle();
@@ -95,6 +90,7 @@ public class Player extends BattleEntity{
 		stats.mpregen = 0.5;
 		stats.mp.max = 130;
 		stats.mp.real = stats.mp.max;
+		levels = new Leveling(stats);
 		constructorHelp("Sprites/Chars/player.png");
 		moving = false;
 		invent = new Inventory();

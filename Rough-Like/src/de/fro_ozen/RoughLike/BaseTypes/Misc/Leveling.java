@@ -5,14 +5,18 @@ import de.fro_ozen.RoughLike.BaseTypes.Simple.VariablePair;
 public class Leveling {
 	public int Level, expEver;
 	public VariablePair exp;
-	public Leveling(){
+	private BaseStats ownerStats;
+	public Leveling(BaseStats ownerStats){
 		Level = 1;
 		exp = new VariablePair();
 		exp.max = 25;
 		expEver = 0;
 		exp.real = 0;
+		this.ownerStats = ownerStats;
 	}
 	private void levelUp(){
+		ownerStats.hp.max *= 1.05;
+		ownerStats.mp.max *= 1.05;
 		Level++;
 	}
 	public void addExp(int amount){

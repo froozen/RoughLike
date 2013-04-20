@@ -1,9 +1,6 @@
 package de.fro_ozen.RoughLike.GameMechanics;
 
-import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -16,7 +13,6 @@ import de.fro_ozen.RoughLike.BaseTypes.Entitys.Player;
 
 public class GameFrame extends JFrame{
 	private MenuHandler menhan;
-	private Player p;
 	private HUD hud;
 	private GamePanel gp;
 	private ArrayList<BaseEntity> entitys;
@@ -31,7 +27,6 @@ public class GameFrame extends JFrame{
 		this.entitys = entitys;
 		gp = new GamePanel();
 		gp.setBounds(0, 0, 800, 600);
-		p = hero;
 		this.hud = hud;
 		this.menhan = menhan;
 
@@ -79,8 +74,5 @@ public class GameFrame extends JFrame{
 		@Override
 		public void mousePressed(MouseEvent e) {
 		}
-
-		
-
 	}
 }
