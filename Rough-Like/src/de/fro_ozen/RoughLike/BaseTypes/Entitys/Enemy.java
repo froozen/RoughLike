@@ -4,9 +4,11 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+import de.fro_ozen.RoughLike.BaseTypes.Items.HelmetItem;
 import de.fro_ozen.RoughLike.BaseTypes.Items.Potion;
 import de.fro_ozen.RoughLike.BaseTypes.Items.Sword;
 import de.fro_ozen.RoughLike.BaseTypes.Misc.BaseStats;
+import de.fro_ozen.RoughLike.BaseTypes.Misc.EquipSet;
 
 public class Enemy extends BattleEntity{
 	Rectangle reachbox;
@@ -66,6 +68,12 @@ public class Enemy extends BattleEntity{
 			updateBoxes();
 			nextStep();
 			checkDamageNumbers();
+			
+			if(equip.helmet != null)helmetSprite = createCharacterSprite(equip.helmet.overlaySpriteLocation);
+			if(equip.chestPlate != null)armorSprite = createCharacterSprite(equip.chestPlate.overlaySpriteLocation);
+			if(equip.gloves != null)glovesSprite = createCharacterSprite(equip.gloves.overlaySpriteLocation);
+			if(equip.boots != null)bootsSprite = createCharacterSprite(equip.boots.overlaySpriteLocation);
+			if(equip.trousers != null)trousersSprite = createCharacterSprite(equip.trousers.overlaySpriteLocation);
 		}
 	}
 	public Enemy(int x, int y, Player prey){
@@ -80,7 +88,10 @@ public class Enemy extends BattleEntity{
 		moving = true;
 		this.prey = prey;
 		constructorHelp("Sprites/Chars/zombie.png");
-
+		equip = new EquipSet();
+		equip.helmet = new HelmetItem();
+		equip.mainHand = new Sword();
+		equip.refreshOverdef();
 	}
 	private void updateReachbox(){
 		reachbox = new Rectangle((int)x-20, (int) (y-20), sizex+40, sizey+40);
@@ -88,6 +99,13 @@ public class Enemy extends BattleEntity{
 	@Override
 	public void drawMe(Graphics g) {
 		g.drawImage(sprite, (int)x, (int)y, null);
+		
+		if(equip.chestPlate != null)g.drawImage(armorSprite, (int)x, (int)y, null);
+		if(equip.helmet != null)g.drawImage(helmetSprite, (int)x, (int)y, null);
+		if(equip.boots != null)g.drawImage(bootsSprite, (int)x, (int)y, null);
+		if(equip.gloves != null)g.drawImage(glovesSprite, (int)x, (int)y, null);
+		if(equip.trousers != null)g.drawImage(trousersSprite, (int)x, (int)y, null);
+		
 		g.setColor(Color.red);
 		g.fillRect((int)(x+(sizex/2)-20), (int)y-10, 40, 5);
 		g.setColor(Color.green);
@@ -100,7 +118,8 @@ public class Enemy extends BattleEntity{
 	}
 	@Override
 	public int computeDamage() {
-		return (15 - prey.equip.overdef);
+		if(equip.mainHand != null)return equip.mainHand.computeDamage();
+		else return 15;
 	}
 	@Override
 	public void kill() {

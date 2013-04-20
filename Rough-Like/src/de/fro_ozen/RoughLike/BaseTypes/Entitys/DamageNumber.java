@@ -16,7 +16,7 @@ public class DamageNumber extends BaseEntity{
 		this.y = y;
 		this.dmg = dmg;
 		
-		if(dmg>0)color = Color.RED;
+		if(dmg>-1)color = Color.RED;
 		else color = Color.green;
 		this.duration = duration;
 		

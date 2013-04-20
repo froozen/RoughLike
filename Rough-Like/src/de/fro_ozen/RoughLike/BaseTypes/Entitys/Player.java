@@ -28,9 +28,7 @@ public class Player extends BattleEntity{
 	public Leveling levels;
 	public GunBullet bull;
 	public boolean dead, addBullet;
-	public EquipSet equip;
 	public Inventory invent;
-	private BufferedImage helmetSprite, armorSprite, bootsSprite, glovesSprite, trousersSprite;
 	public void compute() {
 		if(free){
 			if(MouseInput.leftClicked || MouseInput.rightClicked){

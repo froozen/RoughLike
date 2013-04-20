@@ -1,22 +1,26 @@
 package de.fro_ozen.RoughLike.BaseTypes.Entitys;
 
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import de.fro_ozen.RoughLike.BaseTypes.Items.BaseItem;
 import de.fro_ozen.RoughLike.BaseTypes.Misc.BaseStats;
+import de.fro_ozen.RoughLike.BaseTypes.Misc.EquipSet;
 import de.fro_ozen.RoughLike.BaseTypes.Simple.VariablePair;
 
 public abstract class BattleEntity extends CharacterEntity{
 	public BaseItem drop; //Item dropped upon death (Will be changed)
-	public boolean drops; //Wether item is dropped upon
+	public boolean drops; //Wether item is dropped upon death
 	public BaseStats stats; //Stats of the BattleEntity
 	public int atkdir; //Directiion of the attack
 	public long lastAttack; //When the last attack was
 	protected int atkcooldown; //How long it takes until the next attack
 	public ArrayList<DamageNumber> damnumbers = new ArrayList<DamageNumber>(); //DamageNumbers of this BattleEntity
-	public boolean attacking; //Wether tihis BattleEntity is attacking
+	public boolean attacking; //Wether this BattleEntity is attacking
 	public Rectangle attackbox; //The itbox of the attack of this BattleEntity
+	public EquipSet equip; //Equipment of the BattleEntity
+	protected BufferedImage helmetSprite, armorSprite, bootsSprite, glovesSprite, trousersSprite; //Sprites of the Equipment
 	
 	public abstract void kill();
 	public abstract int computeDamage();
@@ -43,6 +47,10 @@ public abstract class BattleEntity extends CharacterEntity{
 	}
 	
 	public void inflictDamage(int dmg, int pushdir) {
+		if(dmg>0){
+			dmg-=equip.overdef;
+			if(dmg<0)dmg = 0;
+		}
 		stats.hp.real-=dmg;
 		if(stats.hp.real >= stats.hp.max)stats.hp.real = stats.hp.max;
 		DamageNumber dmgnum = new DamageNumber((int)x+(sizex/2), (int)y-10, dmg, 1000);
