@@ -2,6 +2,7 @@ package de.fro_ozen.RoughLike.BaseTypes.Items;
 
 import java.awt.Rectangle;
 import java.io.IOException;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 
@@ -10,10 +11,11 @@ import de.fro_ozen.RoughLike.GameMechanics.GameLoop;
 import de.fro_ozen.RoughLike.GameMechanics.MouseInput;
 
 public class Sword extends BaseWeapon{
-	public Sword(){
+	public Sword(int level){
+		Random r = new Random();
 		name = "Random-Sword";
-		atk = 25;
-		atkgap = 0;
+		atk = 18 + (level*4) + r.nextInt(6);
+		atkgap = r.nextInt(4);
 		atk -= atkgap/2;
 		try {
 			icon = ImageIO.read(getClass().getClassLoader().getResourceAsStream("Sprites/Icons/sword.png"));

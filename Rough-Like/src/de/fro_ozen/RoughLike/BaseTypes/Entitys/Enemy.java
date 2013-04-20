@@ -90,7 +90,7 @@ public class Enemy extends BattleEntity{
 		constructorHelp("Sprites/Chars/zombie.png");
 		equip = new EquipSet();
 		equip.helmet = new HelmetItem();
-		equip.mainHand = new Sword();
+		equip.mainHand = new Sword(prey.levels.Level);
 		equip.refreshOverdef();
 	}
 	private void updateReachbox(){

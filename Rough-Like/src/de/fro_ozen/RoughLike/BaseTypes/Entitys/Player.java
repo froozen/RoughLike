@@ -94,7 +94,7 @@ public class Player extends BattleEntity{
 		constructorHelp("Sprites/Chars/player.png");
 		moving = false;
 		invent = new Inventory();
-		equip.mainHand = new Sword();
+		equip.mainHand = new Sword(levels.Level);
 		equip.offHand = new HealSpell();
 		equip.chestPlate = new ChestPlateItem();
 		equip.helmet = new HelmetItem();
