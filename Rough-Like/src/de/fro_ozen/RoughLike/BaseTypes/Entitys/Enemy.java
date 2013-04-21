@@ -14,6 +14,7 @@ public class Enemy extends BattleEntity{
 	Rectangle reachbox;
 	Player prey;
 	double HPbarLength;
+	
 	public void compute() {
 		if(stats.hp.real>0){
 			updateReachbox();
@@ -92,9 +93,53 @@ public class Enemy extends BattleEntity{
 		equip.helmet = new HelmetItem();
 		equip.mainHand = new Sword(prey.levels.Level);
 		equip.refreshOverdef();
+		generateDrop();
 	}
 	private void updateReachbox(){
 		reachbox = new Rectangle((int)x-20, (int) (y-20), sizex+40, sizey+40);
+	}
+	private void generateDrop(){
+		double randomNumber = Math.random();
+		if(equip.helmet != null || equip.chestPlate != null || equip.trousers != null || equip.boots != null || equip.gloves != null){
+			if(randomNumber<0.35)drop = equip.mainHand;
+			else{
+				int equipNumber = 0;
+				if(equip.helmet != null)equipNumber++;
+				if(equip.chestPlate != null)equipNumber++;
+				if(equip.trousers != null)equipNumber++;
+				if(equip.boots != null)equipNumber++;
+				if(equip.gloves != null)equipNumber++;
+				double dropRate = 1/equipNumber;
+				int itemNumber = 1;
+				
+				randomNumber = Math.random();
+				if(equip.helmet != null && drop == null){
+					if(randomNumber<dropRate*itemNumber)drop = equip.helmet;
+					else itemNumber++;
+				}
+				if(equip.chestPlate != null && drop == null){
+					if(randomNumber<dropRate*itemNumber)drop = equip.chestPlate;
+					else itemNumber++;
+				}
+				if(equip.trousers != null && drop == null){
+					if(randomNumber<dropRate*itemNumber)drop = equip.trousers;
+					else itemNumber++;
+				}
+				if(equip.boots != null && drop == null){
+					if(randomNumber<dropRate*itemNumber)drop = equip.boots;
+					else itemNumber++;
+				}
+				if(equip.gloves != null && drop == null){
+					if(randomNumber<dropRate*itemNumber)drop = equip.gloves;
+					else itemNumber++;
+				}
+			}
+		}
+		else drop = equip.mainHand;
+		
+		randomNumber = Math.random();
+		if(randomNumber<0.6)drop = new Potion(25);
+		else if(randomNumber<0.7)drop = null;
 	}
 	@Override
 	public void drawMe(Graphics g) {
@@ -123,9 +168,7 @@ public class Enemy extends BattleEntity{
 	}
 	@Override
 	public void kill() {
-		drop = new Potion(25);
-		drops=true;
 		remove = true;
-		prey.levels.addExp(25);
+		prey.levels.addExp(15);
 	}
 }

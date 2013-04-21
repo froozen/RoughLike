@@ -11,7 +11,6 @@ import de.fro_ozen.RoughLike.BaseTypes.Simple.VariablePair;
 
 public abstract class BattleEntity extends CharacterEntity{
 	public BaseItem drop; //Item dropped upon death (Will be changed)
-	public boolean drops; //Wether item is dropped upon death
 	public BaseStats stats; //Stats of the BattleEntity
 	public int atkdir; //Directiion of the attack
 	public long lastAttack; //When the last attack was

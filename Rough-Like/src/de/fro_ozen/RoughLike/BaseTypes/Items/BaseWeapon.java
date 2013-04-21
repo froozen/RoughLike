@@ -12,7 +12,6 @@ public abstract class BaseWeapon extends BaseItem{
 	
 	public abstract void attack();
 	
-	
 	public String getCompareString(){
 		return this.getClass()+name+atk+atkgap+mag+maggap;
 	}

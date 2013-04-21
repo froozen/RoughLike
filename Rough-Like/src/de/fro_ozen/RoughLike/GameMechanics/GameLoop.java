@@ -94,7 +94,7 @@ public class GameLoop {
 				BattleEntity be = (BattleEntity)e;
 				if(be.stats.hp.real<=0){
 					be.kill();
-					if(be.drops){
+					if(be.drop != null){
 						DropItem x = new DropItem(be.feetbox.x, be.feetbox.y, be.drop);
 						ids.add(x);
 					}
