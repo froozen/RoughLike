@@ -35,7 +35,7 @@ public abstract class BaseWeapon extends BaseItem{
 	}
 
 	public int computeDamage(){
-		if(atkgap!=0)return atk+ran.nextInt(atkgap);
+		if(atkgap>0)return atk+ran.nextInt(atkgap);
 		else return atk;
 	}
 }
