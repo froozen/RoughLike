@@ -7,6 +7,7 @@ import java.awt.Rectangle;
 import de.fro_ozen.RoughLike.BaseTypes.Items.BootsItem;
 import de.fro_ozen.RoughLike.BaseTypes.Items.ChestPlateItem;
 import de.fro_ozen.RoughLike.BaseTypes.Items.GlovesItem;
+import de.fro_ozen.RoughLike.BaseTypes.Items.Gun;
 import de.fro_ozen.RoughLike.BaseTypes.Items.HelmetItem;
 import de.fro_ozen.RoughLike.BaseTypes.Items.Potion;
 import de.fro_ozen.RoughLike.BaseTypes.Items.Sword;
@@ -89,7 +90,7 @@ public class Enemy extends BattleEntity{
 		this.x = x;
 		this.y = y;
 		stats = new BaseStats();
-		stats.hp.max =200;
+		stats.hp.max =(int) (200 * Math.pow(GameLoop.player.levels.Level, 1.03));
 		stats.hp.real = stats.hp.max;
 		speed = 100;
 		moving = true;
@@ -115,7 +116,11 @@ public class Enemy extends BattleEntity{
 	private void generateDrop(){
 		double randomNumber = Math.random();
 		if(equip.helmet != null || equip.chestPlate != null || equip.trousers != null || equip.boots != null || equip.gloves != null){
-			if(randomNumber<0.35)drop = equip.mainHand;
+			if(randomNumber<0.4){
+				randomNumber = Math.random();
+				if(randomNumber<0.75)drop = equip.mainHand;
+				else drop = new Gun(prey.levels.Level);
+			}
 			else{
 				int equipNumber = 0;
 				if(equip.helmet != null)equipNumber++;
@@ -149,11 +154,15 @@ public class Enemy extends BattleEntity{
 				}
 			}
 		}
-		else drop = equip.mainHand;
+		else{
+			randomNumber = Math.random();
+			if(randomNumber<0.75)drop = equip.mainHand;
+			else drop = new Gun(prey.levels.Level);
+		}
 		
 		randomNumber = Math.random();
-		if(randomNumber<0.6)drop = new Potion(25);
-		else if(randomNumber<0.7)drop = null;
+		if(randomNumber<0.4)drop = new Potion(25);
+		else if(randomNumber<0.5)drop = null;
 	}
 	private void generateExpDrop(){
 		expDrop = GameLoop.player.levels.Level*3 + 12;

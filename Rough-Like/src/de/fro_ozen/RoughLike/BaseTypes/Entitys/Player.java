@@ -101,7 +101,7 @@ public class Player extends BattleEntity{
 		equip.boots = new BootsItem();
 		equip.gloves = new GlovesItem();
 		equip.trousers = new TrousersItem();
-		invent.addItem(new Gun());
+		invent.addItem(new Gun(levels.Level));
 		equip.refreshOverdef();
 	}
 	public void pickUp(BaseItem item){
