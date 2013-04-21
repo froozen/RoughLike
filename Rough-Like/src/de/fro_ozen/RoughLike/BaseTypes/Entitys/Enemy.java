@@ -13,11 +13,13 @@ import de.fro_ozen.RoughLike.BaseTypes.Items.Sword;
 import de.fro_ozen.RoughLike.BaseTypes.Items.TrousersItem;
 import de.fro_ozen.RoughLike.BaseTypes.Misc.BaseStats;
 import de.fro_ozen.RoughLike.BaseTypes.Misc.EquipSet;
+import de.fro_ozen.RoughLike.GameMechanics.GameLoop;
 
 public class Enemy extends BattleEntity{
 	Rectangle reachbox;
 	Player prey;
 	double HPbarLength;
+	private int expDrop;
 	
 	public void compute() {
 		if(stats.hp.real>0){
@@ -98,6 +100,7 @@ public class Enemy extends BattleEntity{
 		equip.mainHand = new Sword(prey.levels.Level);
 		equip.refreshOverdef();
 		generateDrop();
+		generateExpDrop();
 	}
 	private void updateReachbox(){
 		reachbox = new Rectangle((int)x-20, (int) (y-20), sizex+40, sizey+40);
@@ -152,6 +155,9 @@ public class Enemy extends BattleEntity{
 		if(randomNumber<0.6)drop = new Potion(25);
 		else if(randomNumber<0.7)drop = null;
 	}
+	private void generateExpDrop(){
+		expDrop = GameLoop.player.levels.Level*3 + 12;
+	}
 	@Override
 	public void drawMe(Graphics g) {
 		g.drawImage(sprite, (int)x, (int)y, null);
@@ -180,6 +186,6 @@ public class Enemy extends BattleEntity{
 	@Override
 	public void kill() {
 		remove = true;
-		prey.levels.addExp(15);
+		prey.levels.addExp(expDrop);
 	}
 }
