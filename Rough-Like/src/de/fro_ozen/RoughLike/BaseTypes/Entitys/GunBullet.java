@@ -26,6 +26,12 @@ public class GunBullet extends ProjectileEntity{
 		this.atk = atk;
 		this.atkgap = atkgap;
 
+
+		speed=400;
+		sizex = 4;
+		sizey = 4;
+		constructorHelp();
+		
 		if(Math.abs(movex)>Math.abs(movey)){
 			if((movex)>0)dir=3;
 			else dir=2;
@@ -34,11 +40,6 @@ public class GunBullet extends ProjectileEntity{
 			if((movey)>0)dir =1;
 			else dir=4;
 		}
-
-		speed=400;
-		sizex = 4;
-		sizey = 4;
-		constructorHelp();
 	}
 	public int deliverDamage(){
 		if(atkgap != 0)return atk + r.nextInt(atkgap);
