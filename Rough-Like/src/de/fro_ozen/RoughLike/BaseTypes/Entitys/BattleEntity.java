@@ -15,7 +15,7 @@ public abstract class BattleEntity extends CharacterEntity{
 	public int atkdir; //Directiion of the attack
 	public long lastAttack; //When the last attack was
 	protected int atkcooldown; //How long it takes until the next attack
-	public ArrayList<DamageNumber> damnumbers = new ArrayList<DamageNumber>(); //DamageNumbers of this BattleEntity
+	public ArrayList<FloatingText> damnumbers = new ArrayList<FloatingText>(); //FloatingTexts of this BattleEntity
 	public boolean attacking; //Wether this BattleEntity is attacking
 	public Rectangle attackbox; //The itbox of the attack of this BattleEntity
 	public EquipSet equip; //Equipment of the BattleEntity
@@ -25,13 +25,13 @@ public abstract class BattleEntity extends CharacterEntity{
 	public abstract int computeDamage();
 
 	
-	void checkDamageNumbers(){
-		ArrayList<DamageNumber> removers = new ArrayList<DamageNumber>();
-		for(DamageNumber dmgnum:damnumbers){
+	void checkFloatingTexts(){
+		ArrayList<FloatingText> removers = new ArrayList<FloatingText>();
+		for(FloatingText dmgnum:damnumbers){
 			dmgnum.compute();
 			if(dmgnum.remove)removers.add(dmgnum);
 		}
-		for(DamageNumber dmgnum:removers){
+		for(FloatingText dmgnum:removers){
 			damnumbers.remove(dmgnum);
 		}
 	}
@@ -52,7 +52,7 @@ public abstract class BattleEntity extends CharacterEntity{
 		}
 		stats.hp.real-=dmg;
 		if(stats.hp.real >= stats.hp.max)stats.hp.real = stats.hp.max;
-		DamageNumber dmgnum = new DamageNumber((int)x+(sizex/2), (int)y-10, dmg, 1000);
+		FloatingText dmgnum = new FloatingText((int)x+(sizex/2), (int)y-10, dmg, 1000);
 		damnumbers.add(dmgnum);
 		free = false;
 		forcedir = pushdir;

@@ -72,7 +72,7 @@ public class Enemy extends BattleEntity{
 			refreshSprite();
 			updateBoxes();
 			nextStep();
-			checkDamageNumbers();
+			checkFloatingTexts();
 			
 			if(equip.helmet != null)helmetSprite = createCharacterSprite(equip.helmet.overlaySpriteLocation);
 			if(equip.chestPlate != null)armorSprite = createCharacterSprite(equip.chestPlate.overlaySpriteLocation);
@@ -167,7 +167,7 @@ public class Enemy extends BattleEntity{
 		g.setColor(Color.green);
 		HPbarLength =((double)stats.hp.real/(double)stats.hp.max)*40;
 		g.fillRect((int)(x+(sizex/2)-20), (int)y-10, (int)HPbarLength, 5);
-		for(DamageNumber dmgnum:damnumbers){
+		for(FloatingText dmgnum:damnumbers){
 			dmgnum.drawMe(g);
 		}
 

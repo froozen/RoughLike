@@ -73,7 +73,7 @@ public class Player extends BattleEntity{
 		refreshSprite();
 		updateBoxes();
 		nextStep();
-		checkDamageNumbers();
+		checkFloatingTexts();
 		regenHP();
 	}
 	public Player(int x, int y){
@@ -90,7 +90,7 @@ public class Player extends BattleEntity{
 		stats.mpregen = 0.5;
 		stats.mp.max = 130;
 		stats.mp.real = stats.mp.max;
-		levels = new Leveling(stats);
+		levels = new Leveling();
 		constructorHelp("Sprites/Chars/player.png");
 		moving = false;
 		invent = new Inventory();
@@ -117,7 +117,7 @@ public class Player extends BattleEntity{
 		if(equip.trousers != null)g.drawImage(trousersSprite, (int)x, (int)y, null);
 		
 		g.setColor(Color.red);
-		for(DamageNumber dmgnum:damnumbers){
+		for(FloatingText dmgnum:damnumbers){
 			dmgnum.drawMe(g);
 		}
 	}
