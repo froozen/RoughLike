@@ -43,9 +43,9 @@ public class HUD{
 			hpbar = ImageIO.read(getClass().getClassLoader().getResourceAsStream("Sprites/HUD/hpbar.png"));
 			mpbar = ImageIO.read(getClass().getClassLoader().getResourceAsStream("Sprites/HUD/mpbar.png"));
 			expbar = ImageIO.read(getClass().getClassLoader().getResourceAsStream("Sprites/HUD/expbar.png"));
-			if(HPbarLength <= 0)HPbarLength = 1;
-			if(MPbarLength <= 0)MPbarLength = 1;
-			if(expBarHeight <= 0)expBarHeight = 1;
+			if(HPbarLength <= 1)HPbarLength = 1;
+			if(MPbarLength <= 1)MPbarLength = 1;
+			if(expBarHeight <= 1)expBarHeight = 1;
 			hpbar = hpbar.getSubimage(0, 0, (int)HPbarLength, 10);
 			mpbar = mpbar.getSubimage(0, 0, (int) MPbarLength, 10);
 			expbar = expbar.getSubimage(0, 0, 8, (int)expBarHeight);

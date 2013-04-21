@@ -4,9 +4,13 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+import de.fro_ozen.RoughLike.BaseTypes.Items.BootsItem;
+import de.fro_ozen.RoughLike.BaseTypes.Items.ChestPlateItem;
+import de.fro_ozen.RoughLike.BaseTypes.Items.GlovesItem;
 import de.fro_ozen.RoughLike.BaseTypes.Items.HelmetItem;
 import de.fro_ozen.RoughLike.BaseTypes.Items.Potion;
 import de.fro_ozen.RoughLike.BaseTypes.Items.Sword;
+import de.fro_ozen.RoughLike.BaseTypes.Items.TrousersItem;
 import de.fro_ozen.RoughLike.BaseTypes.Misc.BaseStats;
 import de.fro_ozen.RoughLike.BaseTypes.Misc.EquipSet;
 
@@ -90,13 +94,20 @@ public class Enemy extends BattleEntity{
 		this.prey = prey;
 		constructorHelp("Sprites/Chars/zombie.png");
 		equip = new EquipSet();
-		equip.helmet = new HelmetItem();
+		generateEquipment();
 		equip.mainHand = new Sword(prey.levels.Level);
 		equip.refreshOverdef();
 		generateDrop();
 	}
 	private void updateReachbox(){
 		reachbox = new Rectangle((int)x-20, (int) (y-20), sizex+40, sizey+40);
+	}
+	private void generateEquipment(){
+		if(prey.levels.Level>1)equip.helmet = new HelmetItem();
+		if(prey.levels.Level>3)equip.boots = new BootsItem();
+		if(prey.levels.Level>3)equip.gloves = new GlovesItem();
+		if(prey.levels.Level>6)equip.trousers = new TrousersItem();
+		if(prey.levels.Level>8)equip.chestPlate = new ChestPlateItem();
 	}
 	private void generateDrop(){
 		double randomNumber = Math.random();
