@@ -3,6 +3,7 @@ package de.fro_ozen.RoughLike.GameMechanics;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Random;
 
 
 import de.fro_ozen.RoughLike.BaseTypes.Entitys.BaseEntity;
@@ -15,6 +16,7 @@ import de.fro_ozen.RoughLike.BaseTypes.Entitys.ProjectileEntity;
 import de.fro_ozen.RoughLike.GameMechanics.Menus.ItemShortCutBar;
 
 public class GameLoop {
+	Random ran = new Random();
 	private boolean freeze;
 	public boolean end;
 	public static Player player;
@@ -26,12 +28,10 @@ public class GameLoop {
 		player = new Player(300, 300);
 		menhan = new MenuHandler(player);
 		hud = new HUD(player);
-		Enemy e = new Enemy(400,400, player);
 		thisTime = System.currentTimeMillis();
 		lastTime = System.currentTimeMillis();
 		EntityContainer = new ArrayList<BaseEntity>();
 		EntityContainer.add(player);
-		EntityContainer.add(e);
 	}
 	private void checkPickups(){
 		for(BaseEntity e:EntityContainer){
@@ -116,7 +116,7 @@ public class GameLoop {
 			if(e instanceof Enemy)enemy = true;
 		}
 		if(!enemy){
-			Enemy en = new Enemy(400,400, player);
+			Enemy en = new Enemy(ran.nextInt(800),(ran.nextInt(600)), player);
 			if(!en.isColiding(player))EntityContainer.add(en);
 
 		}
