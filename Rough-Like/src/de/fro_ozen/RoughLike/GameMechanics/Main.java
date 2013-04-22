@@ -21,7 +21,7 @@ public class Main {
 					gf.setLoop(loop);
 				}
 			}
-			Thread.sleep(15);
+			Thread.sleep(10);
 		}
 	}
 }
