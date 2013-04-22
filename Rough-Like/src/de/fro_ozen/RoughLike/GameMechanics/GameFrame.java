@@ -1,5 +1,7 @@
 package de.fro_ozen.RoughLike.GameMechanics;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -60,7 +62,12 @@ public class GameFrame extends JFrame{
 			}
 			else{
 				if(gamestart)g.drawImage(loadingScreen, 0, 0, null);
-				else g.drawImage(startScreen, 0, 0, null);
+				else{
+					g.drawImage(startScreen, 0, 0, null);
+					g.setFont(this.getFont().deriveFont(Font.PLAIN, 20));
+					g.setColor(Color.black);
+					g.drawString("Version 1.0", 0, 20);
+				}
 			}
 		}
 	}
