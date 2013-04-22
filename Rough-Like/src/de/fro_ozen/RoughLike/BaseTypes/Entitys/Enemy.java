@@ -161,7 +161,11 @@ public class Enemy extends BattleEntity{
 		}
 		
 		randomNumber = Math.random();
-		if(randomNumber<0.4)drop = new Potion(25);
+		if(randomNumber<0.4){
+			randomNumber = Math.random();
+			if(randomNumber<0.4)drop = new Potion(20, "MP");
+			else drop = new Potion(25);
+		}
 		else if(randomNumber<0.5)drop = null;
 	}
 	private void generateExpDrop(){
