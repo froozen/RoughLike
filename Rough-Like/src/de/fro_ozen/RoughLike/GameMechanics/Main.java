@@ -1,14 +1,26 @@
 package de.fro_ozen.RoughLike.GameMechanics;
 
 public class Main {
-
+	static GameLoop loop;
 	public static void main(String[] args) throws InterruptedException {
-		GameLoop loop = new GameLoop();
-		loop.initialize();
-		GameFrame gf = new GameFrame(loop.player, loop.EntityContainer, loop.hud, loop.menhan);
+		GameFrame gf = new GameFrame();
 		while(true){
-			loop.computeFrame();
 			gf.nextFrame();
+			if(gf.gamestart){
+				if(loop != null){
+					loop.computeFrame();
+					if(loop.end){
+						gf.setLoop(null);
+						loop = null;
+						gf.gamestart = false;
+					}
+				}
+				else{
+					loop = new GameLoop();
+					loop.initialize();
+					gf.setLoop(loop);
+				}
+			}
 			Thread.sleep(15);
 		}
 	}

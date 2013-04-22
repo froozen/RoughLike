@@ -16,6 +16,7 @@ import de.fro_ozen.RoughLike.GameMechanics.Menus.ItemShortCutBar;
 
 public class GameLoop {
 	private boolean freeze;
+	public boolean end;
 	public static Player player;
 	public HUD hud;
 	public MenuHandler menhan;
@@ -162,6 +163,7 @@ public class GameLoop {
 			testColission();
 			checkAttacks();
 		}
+		if(menhan.gameOver && MouseInput.leftClicked)end = true;
 		ItemShortCutBar.checkKeys();
 		KeyInput.resetReleasedKeys();
 		MouseInput.resetClicks();
