@@ -77,10 +77,10 @@ public class GameFrame extends JFrame{
 			MouseInput.mousePoint = e.getPoint();
 			if(e.getButton() == MouseEvent.BUTTON1){
 				if(!gamestart)gamestart = true;
-				MouseInput.leftClicked = true;
+				MouseInput.lastLeftClicked = true;
 			}
 			if(e.getButton() == MouseEvent.BUTTON3){
-				MouseInput.rightClicked= true;
+				MouseInput.lastRightClicked= true;
 			}
 		}
 
