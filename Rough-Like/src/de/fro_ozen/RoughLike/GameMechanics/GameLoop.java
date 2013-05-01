@@ -111,14 +111,16 @@ public class GameLoop {
 			EntityContainer.remove(e);
 		}
 
-		boolean enemy = false;
+		int normalEnemyCount = 4;
+		int enemyCount = 0;
 		for(BaseEntity e:EntityContainer){
-			if(e instanceof Enemy)enemy = true;
+			if(e instanceof Enemy)enemyCount++;
 		}
-		if(!enemy){
-			Enemy en = new Enemy(ran.nextInt(800),(ran.nextInt(600)), player);
-			if(!en.isColiding(player))EntityContainer.add(en);
-
+		if(enemyCount < normalEnemyCount){
+			for(int i = 0; i<(normalEnemyCount - enemyCount); i++){
+				Enemy en = new Enemy(ran.nextInt(800),(ran.nextInt(600)), player);
+				if(!en.isColiding(player))EntityContainer.add(en);
+			}
 		}
 	}
 	private void resortEntitys(){

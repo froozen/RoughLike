@@ -47,19 +47,28 @@ public class Enemy extends BattleEntity{
 				}
 				else{
 					lastdir = dir;
-					if(prey.y>y){y+=speed*timeSinceLastFrame; dir=1;}
-					if(prey.x<x){x-=speed*timeSinceLastFrame; dir = 2;}
-					if(prey.x>x){x+=speed*timeSinceLastFrame; dir = 3;}
-					if(prey.y<y){y-=speed*timeSinceLastFrame; dir = 4;}
+					double movex = prey.x-x;
+					double movey = prey.y-y;
+					if(!(movex==0||movey==0)){
+						double complway = (Math.abs(movex)+Math.abs(movey));
+						movex = (Math.abs(movex)/complway)*(movex/Math.abs(movex));
+						movey = (Math.abs(movey)/complway)*(movey/Math.abs(movey));
+					}
+					else{
+						if(movex==0)movey=movey/Math.abs(movey);
+						else movex = movex/Math.abs(movex);
+					}
 
-					if(Math.abs(prey.x-x)>Math.abs(prey.y-y)){
-						if((prey.x-x)>0)dir=3;
+					if(Math.abs(movex)>Math.abs(movey)){
+						if((movex)>0)dir=3;
 						else dir=2;
 					}
 					else{
-						if((prey.y-y)>0)dir =1;
+						if((movey)>0)dir =1;
 						else dir=4;
 					}
+					x += movex*timeSinceLastFrame*speed;
+					y += movey*timeSinceLastFrame*speed;
 				}
 			}
 			else{
@@ -90,7 +99,7 @@ public class Enemy extends BattleEntity{
 		this.x = x;
 		this.y = y;
 		stats = new BaseStats();
-		stats.hp.max =(int) (200 * Math.pow(GameLoop.player.levels.Level, 1.03));
+		stats.hp.max =(int) (50 * Math.pow(1.1, GameLoop.player.levels.Level));
 		stats.hp.real = stats.hp.max;
 		speed = 100;
 		moving = true;
