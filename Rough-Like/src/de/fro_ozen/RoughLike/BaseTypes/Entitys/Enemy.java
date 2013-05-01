@@ -175,7 +175,7 @@ public class Enemy extends BattleEntity{
 			if(randomNumber<0.4)drop = new Potion(20, "MP");
 			else drop = new Potion(25);
 		}
-		else if(randomNumber<0.5)drop = null;
+		else if(randomNumber<0.7)drop = null;
 	}
 	private void generateExpDrop(){
 		expDrop = GameLoop.player.levels.Level*3 + 12;
