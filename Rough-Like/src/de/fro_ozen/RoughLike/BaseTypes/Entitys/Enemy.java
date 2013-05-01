@@ -198,11 +198,10 @@ public class Enemy extends BattleEntity{
 		for(FloatingText dmgnum:damnumbers){
 			dmgnum.drawMe(g);
 		}
-
 	}
 	@Override
 	public int computeDamage() {
-		if(equip.mainHand != null)return equip.mainHand.computeDamage();
+		if(equip.mainHand != null)return equip.mainHand.computeDamage() / 2;
 		else return 15;
 	}
 	@Override
