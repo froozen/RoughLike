@@ -16,17 +16,17 @@ public class Bullet extends ProjectileEntity{
 		y= sourcey;
 		
 		if(Math.abs(movex)>Math.abs(movey)){
-			if((movex)>0)dir=3;
-			else dir=2;
+			if((movex)>0)direction=3;
+			else direction=2;
 		}
 		else{
-			if((movey)>0)dir =1;
-			else dir=4;
+			if((movey)>0)direction =1;
+			else direction=4;
 		}
 		
 		speed=400;
-		sizex = 10;
-		sizey = 10;
+		width = 10;
+		height = 10;
 		constructorHelp("Sprites/Icons/sol.png");
 	}
 	public void compute() {

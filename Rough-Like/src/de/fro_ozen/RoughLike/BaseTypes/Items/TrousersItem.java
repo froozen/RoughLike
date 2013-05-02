@@ -18,12 +18,12 @@ public class TrousersItem extends ArmorItem{
 		defense = 3;
 	}
 	public boolean use(Player p){
-		if(p.equip.trousers != null){
-			p.invent.content.add(p.equip.trousers);
-			p.equip.trousers = null;
+		if(p.equipment.trousers != null){
+			p.invent.content.add(p.equipment.trousers);
+			p.equipment.trousers = null;
 		}
-		p.equip.trousers = this;
-		p.equip.refreshOverdef();
+		p.equipment.trousers = this;
+		p.equipment.refreshOverdef();
 		return true;
 	}
 }

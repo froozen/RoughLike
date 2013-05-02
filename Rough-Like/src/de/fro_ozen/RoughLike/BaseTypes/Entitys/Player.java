@@ -29,57 +29,57 @@ public class Player extends BattleEntity{
 		if(free){
 			if(MouseInput.leftClicked || MouseInput.rightClicked){
 				if(MouseInput.leftClicked){
-					if(System.currentTimeMillis()-lastAttack>atkcooldown && equip.mainHand != null){
-						equip.mainHand.attack();
+					if(System.currentTimeMillis()-lastAttackTime>attackCooldown && equipment.mainHand != null){
+						equipment.mainHand.attack();
 					}
 				}
 				if(MouseInput.rightClicked){
-					if(equip.offHand != null){
-						equip.offHand.attack();
+					if(equipment.offHand != null){
+						equipment.offHand.attack();
 					}
 				}
 			}
 			else{
-				lastdir = dir;
+				lastDirection = direction;
 				moving = false;
-				if(KeyInput.isPressed("down")){y+=speed*timeSinceLastFrame;dir = 1; moving = true;}
-				if(KeyInput.isPressed("left")){x-=speed*timeSinceLastFrame;dir = 2; moving = true;}
-				if(KeyInput.isPressed("right")){x+=speed*timeSinceLastFrame;dir = 3; moving = true;}
-				if(KeyInput.isPressed("up")){y-=speed*timeSinceLastFrame;dir = 4; moving = true;}
+				if(KeyInput.isPressed("down")){y+=speed*timeSinceLastFrame;direction = 1; moving = true;}
+				if(KeyInput.isPressed("left")){x-=speed*timeSinceLastFrame;direction = 2; moving = true;}
+				if(KeyInput.isPressed("right")){x+=speed*timeSinceLastFrame;direction = 3; moving = true;}
+				if(KeyInput.isPressed("up")){y-=speed*timeSinceLastFrame;direction = 4; moving = true;}
 
 				if(y<0)y=0;
-				if(y>600-sizey)y=600-sizey;
+				if(y>600-height)y=600-height;
 				if(x<0)x=0;
-				if(x>800-sizex)x=800-sizex;
+				if(x>800-width)x=800-width;
 
 
 			}
 		}
 		else{
 			double travelway = speed*timeSinceLastFrame;
-			if(forcedir == 1){y+=travelway; dir=4;}
-			if(forcedir == 2){x-=travelway; dir = 3;}
-			if(forcedir == 3){x+=travelway; dir = 2;}
-			if(forcedir == 4){y-=travelway; dir = 1;}
-			forceway -=travelway;
-			if(forceway<0)free = true;
+			if(forcedDirection == 1){y+=travelway; direction=4;}
+			if(forcedDirection == 2){x-=travelway; direction = 3;}
+			if(forcedDirection == 3){x+=travelway; direction = 2;}
+			if(forcedDirection == 4){y-=travelway; direction = 1;}
+			forceWay -=travelway;
+			if(forceWay<0)free = true;
 		}
-		if(equip.helmet != null)helmetSprite = createCharacterSprite(equip.helmet.overlaySpriteLocation);
-		if(equip.chestPlate != null)armorSprite = createCharacterSprite(equip.chestPlate.overlaySpriteLocation);
-		if(equip.gloves != null)glovesSprite = createCharacterSprite(equip.gloves.overlaySpriteLocation);
-		if(equip.boots != null)bootsSprite = createCharacterSprite(equip.boots.overlaySpriteLocation);
-		if(equip.trousers != null)trousersSprite = createCharacterSprite(equip.trousers.overlaySpriteLocation);
+		if(equipment.helmet != null)helmetSprite = createCharacterSprite(equipment.helmet.overlaySpriteLocation);
+		if(equipment.chestPlate != null)armorSprite = createCharacterSprite(equipment.chestPlate.overlaySpriteLocation);
+		if(equipment.gloves != null)glovesSprite = createCharacterSprite(equipment.gloves.overlaySpriteLocation);
+		if(equipment.boots != null)bootsSprite = createCharacterSprite(equipment.boots.overlaySpriteLocation);
+		if(equipment.trousers != null)trousersSprite = createCharacterSprite(equipment.trousers.overlaySpriteLocation);
 		calcAniframe();
 		refreshSprite();
 		updateBoxes();
 		nextStep();
 		checkFloatingTexts();
-		regenHP();
+		regenerateHP();
 	}
 	public Player(int x, int y){
-		equip = new EquipSet();
-		atkcooldown = 300;
-		attackbox = new Rectangle();
+		equipment = new EquipSet();
+		attackCooldown = 300;
+		attackBox = new Rectangle();
 		this.x = x;
 		this.y = y;
 		speed = 200;
@@ -94,15 +94,15 @@ public class Player extends BattleEntity{
 		constructorHelp("Sprites/Chars/player.png");
 		moving = false;
 		invent = new Inventory();
-		equip.mainHand = new Sword(levels.Level);
-		equip.offHand = new HealSpell();
-		equip.chestPlate = new ChestPlateItem();
-		equip.helmet = new HelmetItem();
-		equip.boots = new BootsItem();
-		equip.gloves = new GlovesItem();
-		equip.trousers = new TrousersItem();
+		equipment.mainHand = new Sword(levels.Level);
+		equipment.offHand = new HealSpell();
+		equipment.chestPlate = new ChestPlateItem();
+		equipment.helmet = new HelmetItem();
+		equipment.boots = new BootsItem();
+		equipment.gloves = new GlovesItem();
+		equipment.trousers = new TrousersItem();
 		invent.addItem(new Gun(levels.Level));
-		equip.refreshOverdef();
+		equipment.refreshOverdef();
 	}
 	public void pickUp(BaseItem item){
 		invent.addItem(item);
@@ -110,19 +110,19 @@ public class Player extends BattleEntity{
 	public void drawMe(Graphics g) {
 		g.drawImage(sprite, (int)x, (int)y, null);
 		
-		if(equip.chestPlate != null)g.drawImage(armorSprite, (int)x, (int)y, null);
-		if(equip.helmet != null)g.drawImage(helmetSprite, (int)x, (int)y, null);
-		if(equip.boots != null)g.drawImage(bootsSprite, (int)x, (int)y, null);
-		if(equip.gloves != null)g.drawImage(glovesSprite, (int)x, (int)y, null);
-		if(equip.trousers != null)g.drawImage(trousersSprite, (int)x, (int)y, null);
+		if(equipment.chestPlate != null)g.drawImage(armorSprite, (int)x, (int)y, null);
+		if(equipment.helmet != null)g.drawImage(helmetSprite, (int)x, (int)y, null);
+		if(equipment.boots != null)g.drawImage(bootsSprite, (int)x, (int)y, null);
+		if(equipment.gloves != null)g.drawImage(glovesSprite, (int)x, (int)y, null);
+		if(equipment.trousers != null)g.drawImage(trousersSprite, (int)x, (int)y, null);
 		
 		g.setColor(Color.red);
-		for(FloatingText dmgnum:damnumbers){
+		for(FloatingText dmgnum:floatingText){
 			dmgnum.drawMe(g);
 		}
 	}
 	public int computeDamage() {
-		if(equip.mainHand!=null)return equip.mainHand.computeDamage();
+		if(equipment.mainHand!=null)return equipment.mainHand.computeDamage();
 		else return 5;
 	}
 	public void kill() {

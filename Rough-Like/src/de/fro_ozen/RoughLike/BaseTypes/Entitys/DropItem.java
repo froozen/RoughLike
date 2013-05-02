@@ -16,8 +16,8 @@ public class DropItem extends BaseEntity{
 		iconX = x;
 		this.y = y + 2;
 		iconY = y - 13;
-		sizex = 18;
-		sizey = 10; 
+		width = 18;
+		height = 10; 
 		up = true;
 		speed = 15;
 		constructorHelp();
@@ -43,7 +43,7 @@ public class DropItem extends BaseEntity{
 	@Override
 	public void drawMe(Graphics g) {
 		g.setColor(Color.gray);
-		g.fillOval((int)x, (int)y, sizex, sizey);
+		g.fillOval((int)x, (int)y, width, height);
 		g.drawImage(item.icon, (int)iconX, (int)iconY, null);
 	}
 	

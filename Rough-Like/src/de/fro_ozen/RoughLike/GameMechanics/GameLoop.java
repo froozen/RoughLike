@@ -58,7 +58,7 @@ public class GameLoop {
 						if(e2 instanceof BattleEntity){
 							if(eb.isColiding(e2)){
 								BattleEntity ec = (BattleEntity)e2;
-								ec.inflictDamage(eb.deliverDamage(), eb.dir);
+								ec.inflictDamage(eb.deliverDamage(), eb.direction);
 								eb.remove = true;
 							}
 
@@ -77,7 +77,7 @@ public class GameLoop {
 							if(eb.attacking){
 								if(eb.isHitting(e2)){
 									BattleEntity ec = (BattleEntity)e2;
-									ec.inflictDamage(eb.computeDamage(), eb.atkdir);
+									ec.inflictDamage(eb.computeDamage(), eb.atkDirection);
 								}
 								eb.attacking = false;
 							}
@@ -95,8 +95,8 @@ public class GameLoop {
 				BattleEntity be = (BattleEntity)e;
 				if(be.stats.hp.real<=0){
 					be.kill();
-					if(be.drop != null){
-						DropItem x = new DropItem(be.feetbox.x, be.feetbox.y, be.drop);
+					if(be.dropItem != null){
+						DropItem x = new DropItem(be.feetBox.x, be.feetBox.y, be.dropItem);
 						ids.add(x);
 					}
 				}
@@ -126,7 +126,7 @@ public class GameLoop {
 	private void resortEntitys(){
 		Collections.sort(EntityContainer, new Comparator<BaseEntity>() {
 			public int compare(BaseEntity o1, BaseEntity o2) {
-				return Double.compare(o1.feetbox.y, o2.feetbox.y);
+				return Double.compare(o1.feetBox.y, o2.feetBox.y);
 			}
 		});
 	}

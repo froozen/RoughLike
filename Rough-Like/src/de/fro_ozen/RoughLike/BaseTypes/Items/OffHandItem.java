@@ -8,15 +8,15 @@ public abstract class OffHandItem extends BaseItem{
 		return this.getClass()+name;
 	}
 	public boolean use(Player p){
-		if(p.equip.offHand != null){
-			p.invent.content.add(p.equip.offHand);
-			p.equip.offHand = null;
+		if(p.equipment.offHand != null){
+			p.invent.content.add(p.equipment.offHand);
+			p.equipment.offHand = null;
 		}
-		p.equip.offHand = this;
+		p.equipment.offHand = this;
 		return true;
 	}
 	public void unequip(Player p){
 		p.invent.content.add(this);
-		p.equip.offHand = null;
+		p.equipment.offHand = null;
 	}
 }

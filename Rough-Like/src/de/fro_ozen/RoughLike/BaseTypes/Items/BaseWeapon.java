@@ -21,16 +21,16 @@ public abstract class BaseWeapon extends BaseItem{
 		return list;
 	}
 	public boolean use(Player p){
-		if(GameLoop.player.equip.mainHand != null){
-			GameLoop.player.invent.content.add(GameLoop.player.equip.mainHand);
-			GameLoop.player.equip.mainHand = null;
+		if(GameLoop.player.equipment.mainHand != null){
+			GameLoop.player.invent.content.add(GameLoop.player.equipment.mainHand);
+			GameLoop.player.equipment.mainHand = null;
 		}
-		GameLoop.player.equip.mainHand = this;
+		GameLoop.player.equipment.mainHand = this;
 		return true;
 	}
 	public void unequip(Player p){
 		p.invent.content.add(this);
-		p.equip.mainHand = null;
+		p.equipment.mainHand = null;
 	}
 
 	public int computeDamage(){

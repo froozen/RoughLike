@@ -17,11 +17,11 @@ public abstract class ArmorItem extends BaseItem{
 	}
 	public void unequip(Player p){
 		p.invent.content.add(this);
-		if(this instanceof HelmetItem)p.equip.helmet = null;
-		else if(this instanceof ChestPlateItem)p.equip.chestPlate = null;
-		else if(this instanceof GlovesItem)p.equip.gloves = null;
-		else if(this instanceof BootsItem)p.equip.boots = null;
-		else if(this instanceof TrousersItem)p.equip.trousers = null;
-		p.equip.refreshOverdef();
+		if(this instanceof HelmetItem)p.equipment.helmet = null;
+		else if(this instanceof ChestPlateItem)p.equipment.chestPlate = null;
+		else if(this instanceof GlovesItem)p.equipment.gloves = null;
+		else if(this instanceof BootsItem)p.equipment.boots = null;
+		else if(this instanceof TrousersItem)p.equipment.trousers = null;
+		p.equipment.refreshOverdef();
 	}
 }

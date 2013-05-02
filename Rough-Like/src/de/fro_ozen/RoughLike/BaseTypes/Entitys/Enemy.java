@@ -26,27 +26,27 @@ public class Enemy extends BattleEntity{
 		if(stats.hp.real>0){
 			updateReachbox();
 			if(free){
-				if(reachbox.intersects(prey.colission)){
+				if(reachbox.intersects(prey.colissionBox)){
 					if(Math.abs(prey.x-x)>Math.abs(prey.y-y)){
-						if((prey.x-x)>0)dir=3;
-						else dir=2;
+						if((prey.x-x)>0)direction=3;
+						else direction=2;
 					}
 					else{
-						if((prey.y-y)>0)dir =1;
-						else dir=4;
+						if((prey.y-y)>0)direction =1;
+						else direction=4;
 					}
-					if(System.currentTimeMillis()-lastAttack>atkcooldown){
-						lastAttack = System.currentTimeMillis();
+					if(System.currentTimeMillis()-lastAttackTime>attackCooldown){
+						lastAttackTime = System.currentTimeMillis();
 						attacking = true;
-						if(dir == 1)attackbox = new Rectangle((int)x, (int)y+sizey, sizex, 20);
-						if(dir == 2)attackbox = new Rectangle((int)x-sizex, (int)y+(sizey/2), 20, sizex);
-						if(dir == 3)attackbox = new Rectangle((int)x+sizex, (int)y+(sizey/2), 20, sizex);
-						if(dir == 4)attackbox = new Rectangle((int)x, (int)y-30, sizex, 20);
-						atkdir = dir;
+						if(direction == 1)attackBox = new Rectangle((int)x, (int)y+height, width, 20);
+						if(direction == 2)attackBox = new Rectangle((int)x-width, (int)y+(height/2), 20, width);
+						if(direction == 3)attackBox = new Rectangle((int)x+width, (int)y+(height/2), 20, width);
+						if(direction == 4)attackBox = new Rectangle((int)x, (int)y-30, width, 20);
+						atkDirection = direction;
 					}
 				}
 				else{
-					lastdir = dir;
+					lastDirection = direction;
 					double movex = prey.x-x;
 					double movey = prey.y-y;
 					if(!(movex==0||movey==0)){
@@ -60,12 +60,12 @@ public class Enemy extends BattleEntity{
 					}
 
 					if(Math.abs(movex)>Math.abs(movey)){
-						if((movex)>0)dir=3;
-						else dir=2;
+						if((movex)>0)direction=3;
+						else direction=2;
 					}
 					else{
-						if((movey)>0)dir =1;
-						else dir=4;
+						if((movey)>0)direction =1;
+						else direction=4;
 					}
 					x += movex*timeSinceLastFrame*speed;
 					y += movey*timeSinceLastFrame*speed;
@@ -73,12 +73,12 @@ public class Enemy extends BattleEntity{
 			}
 			else{
 				double travelway = speed*timeSinceLastFrame;
-				if(forcedir == 1){y+=travelway; dir=4;}
-				if(forcedir == 2){x-=travelway; dir = 3;}
-				if(forcedir == 3){x+=travelway; dir = 2;}
-				if(forcedir == 4){y-=travelway; dir = 1;}
-				forceway -=travelway;
-				if(forceway<0)free = true;
+				if(forcedDirection == 1){y+=travelway; direction=4;}
+				if(forcedDirection == 2){x-=travelway; direction = 3;}
+				if(forcedDirection == 3){x+=travelway; direction = 2;}
+				if(forcedDirection == 4){y-=travelway; direction = 1;}
+				forceWay -=travelway;
+				if(forceWay<0)free = true;
 			}
 			calcAniframe();
 			refreshSprite();
@@ -86,16 +86,16 @@ public class Enemy extends BattleEntity{
 			nextStep();
 			checkFloatingTexts();
 			
-			if(equip.helmet != null)helmetSprite = createCharacterSprite(equip.helmet.overlaySpriteLocation);
-			if(equip.chestPlate != null)armorSprite = createCharacterSprite(equip.chestPlate.overlaySpriteLocation);
-			if(equip.gloves != null)glovesSprite = createCharacterSprite(equip.gloves.overlaySpriteLocation);
-			if(equip.boots != null)bootsSprite = createCharacterSprite(equip.boots.overlaySpriteLocation);
-			if(equip.trousers != null)trousersSprite = createCharacterSprite(equip.trousers.overlaySpriteLocation);
+			if(equipment.helmet != null)helmetSprite = createCharacterSprite(equipment.helmet.overlaySpriteLocation);
+			if(equipment.chestPlate != null)armorSprite = createCharacterSprite(equipment.chestPlate.overlaySpriteLocation);
+			if(equipment.gloves != null)glovesSprite = createCharacterSprite(equipment.gloves.overlaySpriteLocation);
+			if(equipment.boots != null)bootsSprite = createCharacterSprite(equipment.boots.overlaySpriteLocation);
+			if(equipment.trousers != null)trousersSprite = createCharacterSprite(equipment.trousers.overlaySpriteLocation);
 		}
 	}
 	public Enemy(int x, int y, Player prey){
-		atkcooldown = 2000;
-		attackbox = new Rectangle();
+		attackCooldown = 2000;
+		attackBox = new Rectangle();
 		this.x = x;
 		this.y = y;
 		stats = new BaseStats();
@@ -105,77 +105,77 @@ public class Enemy extends BattleEntity{
 		moving = true;
 		this.prey = prey;
 		constructorHelp("Sprites/Chars/zombie.png");
-		equip = new EquipSet();
+		equipment = new EquipSet();
 		generateEquipment();
-		equip.mainHand = new Sword(prey.levels.Level);
-		equip.refreshOverdef();
+		equipment.mainHand = new Sword(prey.levels.Level);
+		equipment.refreshOverdef();
 		generateDrop();
 		generateExpDrop();
 	}
 	private void updateReachbox(){
-		reachbox = new Rectangle((int)x-20, (int) (y-20), sizex+40, sizey+40);
+		reachbox = new Rectangle((int)x-20, (int) (y-20), width+40, height+40);
 	}
 	private void generateEquipment(){
-		if(prey.levels.Level>1)equip.helmet = new HelmetItem();
-		if(prey.levels.Level>3)equip.boots = new BootsItem();
-		if(prey.levels.Level>3)equip.gloves = new GlovesItem();
-		if(prey.levels.Level>6)equip.trousers = new TrousersItem();
-		if(prey.levels.Level>8)equip.chestPlate = new ChestPlateItem();
+		if(prey.levels.Level>1)equipment.helmet = new HelmetItem();
+		if(prey.levels.Level>3)equipment.boots = new BootsItem();
+		if(prey.levels.Level>3)equipment.gloves = new GlovesItem();
+		if(prey.levels.Level>6)equipment.trousers = new TrousersItem();
+		if(prey.levels.Level>8)equipment.chestPlate = new ChestPlateItem();
 	}
 	private void generateDrop(){
 		double randomNumber = Math.random();
-		if(equip.helmet != null || equip.chestPlate != null || equip.trousers != null || equip.boots != null || equip.gloves != null){
+		if(equipment.helmet != null || equipment.chestPlate != null || equipment.trousers != null || equipment.boots != null || equipment.gloves != null){
 			if(randomNumber<0.4){
 				randomNumber = Math.random();
-				if(randomNumber<0.75)drop = equip.mainHand;
-				else drop = new Gun(prey.levels.Level);
+				if(randomNumber<0.75)dropItem = equipment.mainHand;
+				else dropItem = new Gun(prey.levels.Level);
 			}
 			else{
 				int equipNumber = 0;
-				if(equip.helmet != null)equipNumber++;
-				if(equip.chestPlate != null)equipNumber++;
-				if(equip.trousers != null)equipNumber++;
-				if(equip.boots != null)equipNumber++;
-				if(equip.gloves != null)equipNumber++;
+				if(equipment.helmet != null)equipNumber++;
+				if(equipment.chestPlate != null)equipNumber++;
+				if(equipment.trousers != null)equipNumber++;
+				if(equipment.boots != null)equipNumber++;
+				if(equipment.gloves != null)equipNumber++;
 				double dropRate = 1/equipNumber;
 				int itemNumber = 1;
 				
 				randomNumber = Math.random();
-				if(equip.helmet != null && drop == null){
-					if(randomNumber<dropRate*itemNumber)drop = equip.helmet;
+				if(equipment.helmet != null && dropItem == null){
+					if(randomNumber<dropRate*itemNumber)dropItem = equipment.helmet;
 					else itemNumber++;
 				}
-				if(equip.chestPlate != null && drop == null){
-					if(randomNumber<dropRate*itemNumber)drop = equip.chestPlate;
+				if(equipment.chestPlate != null && dropItem == null){
+					if(randomNumber<dropRate*itemNumber)dropItem = equipment.chestPlate;
 					else itemNumber++;
 				}
-				if(equip.trousers != null && drop == null){
-					if(randomNumber<dropRate*itemNumber)drop = equip.trousers;
+				if(equipment.trousers != null && dropItem == null){
+					if(randomNumber<dropRate*itemNumber)dropItem = equipment.trousers;
 					else itemNumber++;
 				}
-				if(equip.boots != null && drop == null){
-					if(randomNumber<dropRate*itemNumber)drop = equip.boots;
+				if(equipment.boots != null && dropItem == null){
+					if(randomNumber<dropRate*itemNumber)dropItem = equipment.boots;
 					else itemNumber++;
 				}
-				if(equip.gloves != null && drop == null){
-					if(randomNumber<dropRate*itemNumber)drop = equip.gloves;
+				if(equipment.gloves != null && dropItem == null){
+					if(randomNumber<dropRate*itemNumber)dropItem = equipment.gloves;
 					else itemNumber++;
 				}
 			}
 		}
 		else{
 			randomNumber = Math.random();
-			if(randomNumber<0.75)drop = equip.mainHand;
-			else drop = new Gun(prey.levels.Level);
+			if(randomNumber<0.75)dropItem = equipment.mainHand;
+			else dropItem = new Gun(prey.levels.Level);
 		}
 		
 		randomNumber = Math.random();
 		if(randomNumber<0.4){
 			randomNumber = Math.random();
-			if(randomNumber<0.4)drop = new Potion(20, "MP");
-			else drop = new Potion(25);
+			if(randomNumber<0.4)dropItem = new Potion(20, "MP");
+			else dropItem = new Potion(25);
 		}
-		else if(randomNumber<0.7)drop = null;
+		else if(randomNumber<0.7)dropItem = null;
 	}
 	private void generateExpDrop(){
 		expDrop = GameLoop.player.levels.Level*3 + 12;
@@ -184,24 +184,24 @@ public class Enemy extends BattleEntity{
 	public void drawMe(Graphics g) {
 		g.drawImage(sprite, (int)x, (int)y, null);
 		
-		if(equip.chestPlate != null)g.drawImage(armorSprite, (int)x, (int)y, null);
-		if(equip.helmet != null)g.drawImage(helmetSprite, (int)x, (int)y, null);
-		if(equip.boots != null)g.drawImage(bootsSprite, (int)x, (int)y, null);
-		if(equip.gloves != null)g.drawImage(glovesSprite, (int)x, (int)y, null);
-		if(equip.trousers != null)g.drawImage(trousersSprite, (int)x, (int)y, null);
+		if(equipment.chestPlate != null)g.drawImage(armorSprite, (int)x, (int)y, null);
+		if(equipment.helmet != null)g.drawImage(helmetSprite, (int)x, (int)y, null);
+		if(equipment.boots != null)g.drawImage(bootsSprite, (int)x, (int)y, null);
+		if(equipment.gloves != null)g.drawImage(glovesSprite, (int)x, (int)y, null);
+		if(equipment.trousers != null)g.drawImage(trousersSprite, (int)x, (int)y, null);
 		
 		g.setColor(Color.red);
-		g.fillRect((int)(x+(sizex/2)-20), (int)y-10, 40, 5);
+		g.fillRect((int)(x+(width/2)-20), (int)y-10, 40, 5);
 		g.setColor(Color.green);
 		HPbarLength =((double)stats.hp.real/(double)stats.hp.max)*40;
-		g.fillRect((int)(x+(sizex/2)-20), (int)y-10, (int)HPbarLength, 5);
-		for(FloatingText dmgnum:damnumbers){
+		g.fillRect((int)(x+(width/2)-20), (int)y-10, (int)HPbarLength, 5);
+		for(FloatingText dmgnum:floatingText){
 			dmgnum.drawMe(g);
 		}
 	}
 	@Override
 	public int computeDamage() {
-		if(equip.mainHand != null)return equip.mainHand.computeDamage() / 2;
+		if(equipment.mainHand != null)return equipment.mainHand.computeDamage() / 2;
 		else return 15;
 	}
 	@Override

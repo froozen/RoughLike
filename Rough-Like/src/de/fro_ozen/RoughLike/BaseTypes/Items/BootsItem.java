@@ -18,12 +18,12 @@ public class BootsItem extends ArmorItem{
 		defense = 1;
 	}
 	public boolean use(Player p){
-		if(p.equip.boots != null){
-			p.invent.content.add(p.equip.boots);
-			p.equip.boots = null;
+		if(p.equipment.boots != null){
+			p.invent.content.add(p.equipment.boots);
+			p.equipment.boots = null;
 		}
-		p.equip.boots = this;
-		p.equip.refreshOverdef();
+		p.equipment.boots = this;
+		p.equipment.refreshOverdef();
 		return true;
 	}
 }

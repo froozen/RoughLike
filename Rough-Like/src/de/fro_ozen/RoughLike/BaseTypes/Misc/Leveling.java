@@ -17,7 +17,7 @@ public class Leveling {
 		exp.real = 0;
 	}
 	private void levelUp(){
-		GameLoop.player.damnumbers.add(new FloatingText(GameLoop.player.x + (GameLoop.player.sizex/2), GameLoop.player.y - 20, "LEVEL UP", 1000, new Color(146, 25, 222)));
+		GameLoop.player.floatingText.add(new FloatingText(GameLoop.player.x + (GameLoop.player.width/2), GameLoop.player.y - 20, "LEVEL UP", 1000, new Color(146, 25, 222)));
 		GameLoop.player.stats.hp.max *= 1.05;
 		GameLoop.player.stats.mp.max *= 1.05;
 		GameLoop.player.stats.hp.real = GameLoop.player.stats.hp.max;
@@ -26,7 +26,7 @@ public class Leveling {
 	}
 	public void addExp(int amount){
 		boolean levelup;
-		GameLoop.player.damnumbers.add(new FloatingText(GameLoop.player.x + (GameLoop.player.sizex/2), GameLoop.player.y - 10, "+"+amount+" EXP", 1000, new Color(146, 25, 222)));
+		GameLoop.player.floatingText.add(new FloatingText(GameLoop.player.x + (GameLoop.player.width/2), GameLoop.player.y - 10, "+"+amount+" EXP", 1000, new Color(146, 25, 222)));
 		expEver+=amount;
 		while(amount>0){
 			if((exp.max-exp.real)-amount<=0){

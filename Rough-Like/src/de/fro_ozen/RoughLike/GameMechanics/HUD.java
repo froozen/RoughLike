@@ -61,7 +61,7 @@ public class HUD{
 		g.setFont(g.getFont().deriveFont(Font.PLAIN, 10));
 		g.drawString(""+display.stats.hp.real, 48, 10);
 		g.drawString(""+display.stats.mp.real, 48, 25);
-		if(display.equip.mainHand != null)g.drawImage(display.equip.mainHand.icon, 6, 4, null);
+		if(display.equipment.mainHand != null)g.drawImage(display.equipment.mainHand.icon, 6, 4, null);
 		g.drawString(""+display.levels.Level, 5, 41);
 		itemshorts.drawMe(g);
 	}

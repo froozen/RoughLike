@@ -28,19 +28,19 @@ public class Sword extends BaseWeapon{
 	}
 	public void attack() {
 		if(Math.abs(MouseInput.mousePoint.x-GameLoop.player.x)>Math.abs(MouseInput.mousePoint.y-GameLoop.player.y)){
-			if((MouseInput.mousePoint.x-GameLoop.player.x)>0)GameLoop.player.dir=3;
-			else GameLoop.player.dir=2;
+			if((MouseInput.mousePoint.x-GameLoop.player.x)>0)GameLoop.player.direction=3;
+			else GameLoop.player.direction=2;
 		}
 		else{
-			if((MouseInput.mousePoint.y-GameLoop.player.y)>0)GameLoop.player.dir =1;
-			else GameLoop.player.dir=4;
+			if((MouseInput.mousePoint.y-GameLoop.player.y)>0)GameLoop.player.direction =1;
+			else GameLoop.player.direction=4;
 		}
-		GameLoop.player.lastAttack = System.currentTimeMillis();
+		GameLoop.player.lastAttackTime = System.currentTimeMillis();
 		GameLoop.player.attacking = true;
-		if(GameLoop.player.dir == 1)GameLoop.player.attackbox = new Rectangle((int)GameLoop.player.x, (int)GameLoop.player.y+GameLoop.player.sizey, GameLoop.player.sizex, 30);
-		if(GameLoop.player.dir == 2)GameLoop.player.attackbox = new Rectangle((int)GameLoop.player.x-GameLoop.player.sizex, (int)GameLoop.player.y+(GameLoop.player.sizey/2), 30, GameLoop.player.sizex);
-		if(GameLoop.player.dir == 3)GameLoop.player.attackbox = new Rectangle((int)GameLoop.player.x+GameLoop.player.sizex, (int)GameLoop.player.y+(GameLoop.player.sizey/2), 30, GameLoop.player.sizex);
-		if(GameLoop.player.dir == 4)GameLoop.player.attackbox = new Rectangle((int)GameLoop.player.x, (int)GameLoop.player.y-30, GameLoop.player.sizex, 30);
-		GameLoop.player.atkdir = GameLoop.player.dir;
+		if(GameLoop.player.direction == 1)GameLoop.player.attackBox = new Rectangle((int)GameLoop.player.x, (int)GameLoop.player.y+GameLoop.player.height, GameLoop.player.width, 30);
+		if(GameLoop.player.direction == 2)GameLoop.player.attackBox = new Rectangle((int)GameLoop.player.x-GameLoop.player.width, (int)GameLoop.player.y+(GameLoop.player.height/2), 30, GameLoop.player.width);
+		if(GameLoop.player.direction == 3)GameLoop.player.attackBox = new Rectangle((int)GameLoop.player.x+GameLoop.player.width, (int)GameLoop.player.y+(GameLoop.player.height/2), 30, GameLoop.player.width);
+		if(GameLoop.player.direction == 4)GameLoop.player.attackBox = new Rectangle((int)GameLoop.player.x, (int)GameLoop.player.y-30, GameLoop.player.width, 30);
+		GameLoop.player.atkDirection = GameLoop.player.direction;
 	}
 }

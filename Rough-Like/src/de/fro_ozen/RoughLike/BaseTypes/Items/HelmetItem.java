@@ -18,12 +18,12 @@ public class HelmetItem extends ArmorItem{
 		defense = 2;
 	}
 	public boolean use(Player p){
-		if(p.equip.helmet != null){
-			p.invent.content.add(p.equip.helmet);
-			p.equip.helmet = null;
+		if(p.equipment.helmet != null){
+			p.invent.content.add(p.equipment.helmet);
+			p.equipment.helmet = null;
 		}
-		p.equip.helmet = this;
-		p.equip.refreshOverdef();
+		p.equipment.helmet = this;
+		p.equipment.refreshOverdef();
 		return true;
 	}
 }

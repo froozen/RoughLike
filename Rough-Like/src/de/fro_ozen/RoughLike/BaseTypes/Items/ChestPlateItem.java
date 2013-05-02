@@ -18,12 +18,12 @@ public class ChestPlateItem extends ArmorItem{
 		defense = 5;
 	}
 	public boolean use(Player p){
-		if(p.equip.chestPlate != null){
-			p.invent.content.add(p.equip.chestPlate);
-			p.equip.chestPlate = null;
+		if(p.equipment.chestPlate != null){
+			p.invent.content.add(p.equipment.chestPlate);
+			p.equipment.chestPlate = null;
 		}
-		p.equip.chestPlate = this;
-		p.equip.refreshOverdef();
+		p.equipment.chestPlate = this;
+		p.equipment.refreshOverdef();
 		return true;
 	}
 }

@@ -28,17 +28,17 @@ public class GunBullet extends ProjectileEntity{
 
 
 		speed=400;
-		sizex = 4;
-		sizey = 4;
+		width = 4;
+		height = 4;
 		constructorHelp();
 		
 		if(Math.abs(movex)>Math.abs(movey)){
-			if((movex)>0)dir=3;
-			else dir=2;
+			if((movex)>0)direction=3;
+			else direction=2;
 		}
 		else{
-			if((movey)>0)dir =1;
-			else dir=4;
+			if((movey)>0)direction =1;
+			else direction=4;
 		}
 	}
 	public int deliverDamage(){
@@ -56,7 +56,7 @@ public class GunBullet extends ProjectileEntity{
 	@Override
 	public void drawMe(Graphics g) {
 		g.setColor(Color.black);
-		g.fillRect((int)x, (int)y, sizex, sizey);
+		g.fillRect((int)x, (int)y, width, height);
 	}
 
 }

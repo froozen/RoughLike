@@ -18,12 +18,12 @@ public class GlovesItem extends ArmorItem{
 		defense = 1;
 	}
 	public boolean use(Player p){
-		if(p.equip.gloves != null){
-			p.invent.content.add(p.equip.gloves);
-			p.equip.gloves = null;
+		if(p.equipment.gloves != null){
+			p.invent.content.add(p.equipment.gloves);
+			p.equipment.gloves = null;
 		}
-		p.equip.gloves = this;
-		p.equip.refreshOverdef();
+		p.equipment.gloves = this;
+		p.equipment.refreshOverdef();
 		return true;
 	}
 }

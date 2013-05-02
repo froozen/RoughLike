@@ -16,13 +16,13 @@ public class GEquipmentArea extends BaseElement{
 		for(GItemField field:fields)field.checkMe();
 
 		//Keeps the Items in the ItemFields up-to-date
-		if(GameLoop.player.equip.mainHand != mainHand.display)mainHand.display = GameLoop.player.equip.mainHand;
-		if(GameLoop.player.equip.offHand != offHand.display)offHand.display = GameLoop.player.equip.offHand;
-		if(GameLoop.player.equip.helmet != helmet.display)helmet.display = GameLoop.player.equip.helmet;
-		if(GameLoop.player.equip.chestPlate != chestPlate.display)chestPlate.display = GameLoop.player.equip.chestPlate;
-		if(GameLoop.player.equip.boots != boots.display)boots.display = GameLoop.player.equip.boots;
-		if(GameLoop.player.equip.gloves != gloves.display)gloves.display = GameLoop.player.equip.gloves;
-		if(GameLoop.player.equip.trousers != trousers.display)trousers.display = GameLoop.player.equip.trousers;
+		if(GameLoop.player.equipment.mainHand != mainHand.display)mainHand.display = GameLoop.player.equipment.mainHand;
+		if(GameLoop.player.equipment.offHand != offHand.display)offHand.display = GameLoop.player.equipment.offHand;
+		if(GameLoop.player.equipment.helmet != helmet.display)helmet.display = GameLoop.player.equipment.helmet;
+		if(GameLoop.player.equipment.chestPlate != chestPlate.display)chestPlate.display = GameLoop.player.equipment.chestPlate;
+		if(GameLoop.player.equipment.boots != boots.display)boots.display = GameLoop.player.equipment.boots;
+		if(GameLoop.player.equipment.gloves != gloves.display)gloves.display = GameLoop.player.equipment.gloves;
+		if(GameLoop.player.equipment.trousers != trousers.display)trousers.display = GameLoop.player.equipment.trousers;
 	}
 
 	public void setBounds(int x, int y, int width, int height) {
@@ -36,31 +36,31 @@ public class GEquipmentArea extends BaseElement{
 
 		mainHand = new GItemField();
 		mainHand.setBounds(box.x, box.y+fieldsize, 0, 0);
-		mainHand.setDisplayItem(GameLoop.player.equip.mainHand);
+		mainHand.setDisplayItem(GameLoop.player.equipment.mainHand);
 
 		offHand = new GItemField();
 		offHand.setBounds(box.x+2*fieldsize, box.y+fieldsize, 0, 0);
-		offHand.setDisplayItem(GameLoop.player.equip.offHand);
+		offHand.setDisplayItem(GameLoop.player.equipment.offHand);
 
 		helmet = new GItemField();
 		helmet.setBounds(box.x+fieldsize, box.y, 0, 0);
-		helmet.setDisplayItem(GameLoop.player.equip.helmet);
+		helmet.setDisplayItem(GameLoop.player.equipment.helmet);
 
 		chestPlate = new GItemField();
 		chestPlate.setBounds(box.x+fieldsize, box.y+fieldsize, 0, 0);
-		chestPlate.setDisplayItem(GameLoop.player.equip.chestPlate);
+		chestPlate.setDisplayItem(GameLoop.player.equipment.chestPlate);
 
 		trousers = new GItemField();
 		trousers.setBounds(box.x+fieldsize, box.y+2*fieldsize, 0, 0);
-		trousers.setDisplayItem(GameLoop.player.equip.trousers);
+		trousers.setDisplayItem(GameLoop.player.equipment.trousers);
 		
 		boots = new GItemField();
 		boots.setBounds(box.x+fieldsize, box.y+3*fieldsize, 0, 0);
-		boots.setDisplayItem(GameLoop.player.equip.boots);
+		boots.setDisplayItem(GameLoop.player.equipment.boots);
 
 		gloves = new GItemField();
 		gloves.setBounds(box.x+2*fieldsize, box.y+2*fieldsize, 0, 0);
-		gloves.setDisplayItem(GameLoop.player.equip.gloves);
+		gloves.setDisplayItem(GameLoop.player.equipment.gloves);
 
 		fields.add(trousers);
 		fields.add(mainHand);
