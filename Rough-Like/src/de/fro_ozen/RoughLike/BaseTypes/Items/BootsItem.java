@@ -19,7 +19,7 @@ public class BootsItem extends ArmorItem{
 	}
 	public boolean use(Player p){
 		if(p.equipment.boots != null){
-			p.invent.content.add(p.equipment.boots);
+			p.inventory.content.add(p.equipment.boots);
 			p.equipment.boots = null;
 		}
 		p.equipment.boots = this;

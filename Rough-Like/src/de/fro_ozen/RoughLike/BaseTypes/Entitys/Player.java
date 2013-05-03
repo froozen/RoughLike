@@ -22,9 +22,8 @@ import de.fro_ozen.RoughLike.GameMechanics.MouseInput;
 
 public class Player extends BattleEntity{
 	public Leveling levels;
-	public GunBullet bull;
-	public boolean dead, addBullet;
-	public Inventory invent;
+	public boolean dead;
+	public Inventory inventory;
 	public void compute() {
 		if(free){
 			if(MouseInput.leftClicked || MouseInput.rightClicked){
@@ -93,7 +92,7 @@ public class Player extends BattleEntity{
 		levels = new Leveling();
 		constructorHelp("Sprites/Chars/player.png");
 		moving = false;
-		invent = new Inventory();
+		inventory = new Inventory();
 		equipment.mainHand = new Sword(levels.Level);
 		equipment.offHand = new HealSpell();
 		equipment.chestPlate = new ChestPlateItem();
@@ -101,11 +100,11 @@ public class Player extends BattleEntity{
 		equipment.boots = new BootsItem();
 		equipment.gloves = new GlovesItem();
 		equipment.trousers = new TrousersItem();
-		invent.addItem(new Gun(levels.Level));
+		inventory.addItem(new Gun(levels.Level));
 		equipment.refreshOverdef();
 	}
 	public void pickUp(BaseItem item){
-		invent.addItem(item);
+		inventory.addItem(item);
 	}
 	public void drawMe(Graphics g) {
 		g.drawImage(sprite, (int)x, (int)y, null);

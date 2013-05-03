@@ -16,7 +16,7 @@ public abstract class ArmorItem extends BaseItem{
 		return list;
 	}
 	public void unequip(Player p){
-		p.invent.content.add(this);
+		p.inventory.content.add(this);
 		if(this instanceof HelmetItem)p.equipment.helmet = null;
 		else if(this instanceof ChestPlateItem)p.equipment.chestPlate = null;
 		else if(this instanceof GlovesItem)p.equipment.gloves = null;

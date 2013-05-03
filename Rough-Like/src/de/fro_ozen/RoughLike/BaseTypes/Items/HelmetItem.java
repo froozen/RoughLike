@@ -19,7 +19,7 @@ public class HelmetItem extends ArmorItem{
 	}
 	public boolean use(Player p){
 		if(p.equipment.helmet != null){
-			p.invent.content.add(p.equipment.helmet);
+			p.inventory.content.add(p.equipment.helmet);
 			p.equipment.helmet = null;
 		}
 		p.equipment.helmet = this;

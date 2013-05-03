@@ -19,7 +19,7 @@ public class GlovesItem extends ArmorItem{
 	}
 	public boolean use(Player p){
 		if(p.equipment.gloves != null){
-			p.invent.content.add(p.equipment.gloves);
+			p.inventory.content.add(p.equipment.gloves);
 			p.equipment.gloves = null;
 		}
 		p.equipment.gloves = this;

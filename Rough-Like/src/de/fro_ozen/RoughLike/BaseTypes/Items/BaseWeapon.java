@@ -22,14 +22,14 @@ public abstract class BaseWeapon extends BaseItem{
 	}
 	public boolean use(Player p){
 		if(GameLoop.player.equipment.mainHand != null){
-			GameLoop.player.invent.content.add(GameLoop.player.equipment.mainHand);
+			GameLoop.player.inventory.content.add(GameLoop.player.equipment.mainHand);
 			GameLoop.player.equipment.mainHand = null;
 		}
 		GameLoop.player.equipment.mainHand = this;
 		return true;
 	}
 	public void unequip(Player p){
-		p.invent.content.add(this);
+		p.inventory.content.add(this);
 		p.equipment.mainHand = null;
 	}
 

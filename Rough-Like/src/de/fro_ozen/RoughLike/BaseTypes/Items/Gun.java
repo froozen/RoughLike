@@ -24,8 +24,6 @@ public class Gun extends BaseWeapon{
 		}
 	}
 	public void attack() {
-		GameLoop.player.bull = new GunBullet(MouseInput.mousePoint.x, MouseInput.mousePoint.y , (int)GameLoop.player.x+(GameLoop.player.width/2), (int)GameLoop.player.y+(GameLoop.player.width/2), GameLoop.player, atk, atkgap);
-		GameLoop.player.addBullet = true;
+		GameLoop.newEntitys.add(new GunBullet(MouseInput.mousePoint.x, MouseInput.mousePoint.y , (int)GameLoop.player.x+(GameLoop.player.width/2), (int)GameLoop.player.y+(GameLoop.player.width/2), GameLoop.player, atk, atkgap));
 	}
-
 }

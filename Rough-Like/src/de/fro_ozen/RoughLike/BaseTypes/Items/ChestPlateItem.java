@@ -19,7 +19,7 @@ public class ChestPlateItem extends ArmorItem{
 	}
 	public boolean use(Player p){
 		if(p.equipment.chestPlate != null){
-			p.invent.content.add(p.equipment.chestPlate);
+			p.inventory.content.add(p.equipment.chestPlate);
 			p.equipment.chestPlate = null;
 		}
 		p.equipment.chestPlate = this;

@@ -18,11 +18,12 @@ import de.fro_ozen.RoughLike.GameMechanics.Menus.ItemShortCutBar;
 public class GameLoop {
 	Random ran = new Random();
 	private boolean freeze;
-	public boolean end;
+	public static boolean end;
 	public static Player player;
 	public HUD hud;
 	public MenuHandler menhan;
 	private long thisTime, lastTime;
+	public static ArrayList<BaseEntity> newEntitys;
 	public ArrayList<BaseEntity> EntityContainer ;
 	public void initialize(){
 		player = new Player(300, 300);
@@ -32,6 +33,7 @@ public class GameLoop {
 		lastTime = System.currentTimeMillis();
 		EntityContainer = new ArrayList<BaseEntity>();
 		EntityContainer.add(player);
+		newEntitys = new ArrayList<BaseEntity>();
 	}
 	private void checkPickups(){
 		for(BaseEntity e:EntityContainer){
@@ -44,12 +46,13 @@ public class GameLoop {
 			}
 		}
 	}
-	private void checkAttacks(){
-		if(player.addBullet){
-			EntityContainer.add(player.bull);
-			player.addBullet = false;
+	private void checkNewEntitys(){
+		if(newEntitys.size()>0){
+			EntityContainer.addAll(newEntitys);
+			newEntitys = new ArrayList<BaseEntity>();
 		}
-
+	}
+	private void checkAttacks(){
 		for(BaseEntity e1:EntityContainer){
 			if(e1 instanceof ProjectileEntity){
 				ProjectileEntity eb = (ProjectileEntity)e1;
@@ -157,6 +160,7 @@ public class GameLoop {
 		player.timeSinceLastFrame = thisTime - lastTime;
 		player.timeSinceLastFrame /= 1000;
 		lastTime = thisTime;
+		checkNewEntitys();
 		if(player.dead){
 			menhan.gameOver = true;
 		}

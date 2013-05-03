@@ -9,14 +9,14 @@ public abstract class OffHandItem extends BaseItem{
 	}
 	public boolean use(Player p){
 		if(p.equipment.offHand != null){
-			p.invent.content.add(p.equipment.offHand);
+			p.inventory.content.add(p.equipment.offHand);
 			p.equipment.offHand = null;
 		}
 		p.equipment.offHand = this;
 		return true;
 	}
 	public void unequip(Player p){
-		p.invent.content.add(this);
+		p.inventory.content.add(this);
 		p.equipment.offHand = null;
 	}
 }

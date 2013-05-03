@@ -43,9 +43,9 @@ public class ItemShortCutBar {
 
 	public static void checkKeys(){
 		for(int i = 0; i<10; i++){
-			if(!GameLoop.player.invent.content.contains(items[i]))items[i]=null;
+			if(!GameLoop.player.inventory.content.contains(items[i]))items[i]=null;
 			if(KeyInput.wasReleased(i+"") && items[i] != null && ((System.currentTimeMillis()-lastTimeAssigned)/1000)>1){
-				if(items[i].use(GameLoop.player))GameLoop.player.invent.content.remove(items[i]);
+				if(items[i].use(GameLoop.player))GameLoop.player.inventory.content.remove(items[i]);
 			}
 		}
 	}

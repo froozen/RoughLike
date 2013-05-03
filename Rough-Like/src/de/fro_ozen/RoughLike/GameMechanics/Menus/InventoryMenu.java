@@ -51,7 +51,7 @@ public class InventoryMenu extends GMenu{
 		descriptions.setBounds(425, 225, 165, 160);
 
 		inventory = new GItemArea();
-		inventory.setDisplayItems(GameLoop.player.invent.content);
+		inventory.setDisplayItems(GameLoop.player.inventory.content);
 		inventory.setBounds(10, 10, 405, 380);
 		inventory.setItemFieldListener(new InventoryFieldHandler());
 
@@ -87,7 +87,7 @@ public class InventoryMenu extends GMenu{
 			}
 			
 			if(source.display != null && !shortcut){
-				if(source.display.use(GameLoop.player))GameLoop.player.invent.content.remove(source.display);
+				if(source.display.use(GameLoop.player))GameLoop.player.inventory.content.remove(source.display);
 				
 				if(source.display == selectedItem){
 					if(!(source.display instanceof ItemStack)){
