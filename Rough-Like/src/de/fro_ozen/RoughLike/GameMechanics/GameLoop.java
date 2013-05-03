@@ -79,12 +79,18 @@ public class GameLoop {
 									BattleEntity ec = (BattleEntity)e2;
 									ec.inflictDamage(eb.computeDamage(), eb.atkDirection);
 								}
-								eb.attacking = false;
+//								eb.attacking = false;
 							}
-
 						}
 					}
 				}
+			}
+		}
+		
+		for(BaseEntity e1:EntityContainer){
+			if(e1 instanceof BattleEntity){
+				BattleEntity eb = (BattleEntity)e1;
+				if(eb.attacking)eb.attacking = false;
 			}
 		}
 	}
